@@ -1,6 +1,5 @@
 PBRepository { 
 	#languageName : #'Pharo Candle',
 	#tonelPath: #'.',
-	#bootstrapper: #Candle,
 	#languageDefinitionClass: #PBLanguageDefinitionPharoCandle
 }
