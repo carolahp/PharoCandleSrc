@@ -6,7 +6,7 @@ Class {
 		'instVarNames',
 		'classVariables'
 	],
-	#category : 'Kernel-Classes'
+	#category : #'Kernel-Classes'
 }
 
 { #category : #'as yet unclassified' }

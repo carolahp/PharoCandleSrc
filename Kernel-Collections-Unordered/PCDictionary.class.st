@@ -1,7 +1,7 @@
 Class {
 	#name : #PCDictionary,
 	#superclass : #PCSet,
-	#category : 'Kernel-Collections-Unordered'
+	#category : #'Kernel-Collections-Unordered'
 }
 
 { #category : #'as yet unclassified' }

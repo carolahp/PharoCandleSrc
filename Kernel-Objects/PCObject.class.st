@@ -1,7 +1,7 @@
 Class {
 	#name : #PCObject,
 	#superclass : #nil,
-	#category : 'Kernel-Objects'
+	#category : #'Kernel-Objects'
 }
 
 { #category : #'as yet unclassified' }
@@ -310,19 +310,18 @@ PCObject >> instVarAt: index [
 ]
 
 { #category : #'as yet unclassified' }
-PCObject >> instVarAt: anInteger put: anObject [
-	"Primitive. Store a value into a fixed variable in the receiver. The 
-	numbering of the variables corresponds to the named instance variables. 
-	Fail if the index is not an Integer or is not the index of a fixed variable. 
-	Answer the value stored as the result. Using this message violates the 
-	principle that each object has sovereign control over the storing of 
-	values into its instance variables. Essential. See Object documentation 
-	whatIsAPrimitive."
+PCObject >> instVarAt: index put: anObject [
+	"Primitive. Store a value into a fixed variable in an object. The numbering of the
+	 variables corresponds to the named instance variables, followed by the indexed
+	 instance variables. Fail if the index is not an Integer or is not the index of a fixed
+	 variable or indexed variable. Essential. See Object documentation whatIsAPrimitive."
 
-	"Access beyond fixed fields"
-
-	<primitive: 74>
-	^ self basicAt: anInteger - self class instSize put: anObject
+	<primitive: 174 error: ec>
+	 (index isInteger 
+		and: [ index between: 1 and: self class instSize + self basicSize]) 
+			ifFalse: [ ^ self errorSubscriptBounds: index ].
+	self isReadOnlyObject 
+		ifTrue: [ ^ self modificationForbiddenFor: #instVarAt:put: index: index value: anObject ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -542,6 +541,17 @@ PCObject >> shouldNotImplement [
 	"Announce that, although the receiver inherits this message, it should not implement it."
 
 	self error: 'This message is not appropriate for this object'
+]
+
+{ #category : #'as yet unclassified' }
+PCObject >> size [
+	"Primitive. Answer the number of indexable variables in the receiver. 
+	This value is the same as the largest legal subscript. Essential. See Object 
+	documentation whatIsAPrimitive."
+
+	<primitive: 62>
+	self class isVariable ifFalse: [self errorNotIndexable].
+	^ 0
 ]
 
 { #category : #'as yet unclassified' }

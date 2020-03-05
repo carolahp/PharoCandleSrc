@@ -8,7 +8,7 @@ Class {
 		'CaseSensitiveOrder',
 		'LowercasingTable'
 	],
-	#category : 'Kernel-Collections-Ordered'
+	#category : #'Kernel-Collections-Ordered'
 }
 
 { #category : #'as yet unclassified' }

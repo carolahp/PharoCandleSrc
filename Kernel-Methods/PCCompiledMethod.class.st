@@ -2,7 +2,7 @@ Class {
 	#name : #PCCompiledMethod,
 	#superclass : #PCByteArray,
 	#type : #bytes,
-	#category : 'Kernel-Methods'
+	#category : #'Kernel-Methods'
 }
 
 { #category : #'as yet unclassified' }

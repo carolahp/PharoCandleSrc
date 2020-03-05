@@ -6,7 +6,7 @@ Class {
 		'position',
 		'readLimit'
 	],
-	#category : 'Kernel-Streams'
+	#category : #'Kernel-Streams'
 }
 
 { #category : #'as yet unclassified' }

@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'writeLimit'
 	],
-	#category : 'Kernel-Streams'
+	#category : #'Kernel-Streams'
 }
 
 { #category : #'as yet unclassified' }

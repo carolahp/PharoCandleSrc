@@ -6,7 +6,7 @@ Class {
 		'arguments',
 		'lookupClass'
 	],
-	#category : 'Kernel-Methods'
+	#category : #'Kernel-Methods'
 }
 
 { #category : #'as yet unclassified' }

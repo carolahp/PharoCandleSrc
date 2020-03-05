@@ -4,7 +4,7 @@ Class {
 	#classVars : [
 		'SpecialObjectsArray'
 	],
-	#category : 'Kernel-System'
+	#category : #'Kernel-System'
 }
 
 { #category : #'as yet unclassified' }
@@ -191,7 +191,7 @@ PCSystem class >> specialObjectsArray: anArray [
 PCSystem class >> start [
 	self log: 'Welcome to Pharo Candle edition!' .
 	self log: self tinyBenchmarks.
-	self snapshotAndQuit
+	self quit
 ]
 
 { #category : #'as yet unclassified' }

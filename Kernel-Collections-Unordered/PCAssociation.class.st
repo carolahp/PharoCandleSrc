@@ -5,7 +5,7 @@ Class {
 		'key',
 		'value'
 	],
-	#category : 'Kernel-Collections-Unordered'
+	#category : #'Kernel-Collections-Unordered'
 }
 
 { #category : #'as yet unclassified' }

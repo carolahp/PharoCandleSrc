@@ -1,7 +1,7 @@
 Class {
 	#name : #PCCollection,
 	#superclass : #PCObject,
-	#category : 'Kernel-Collections-Abstract'
+	#category : #'Kernel-Collections-Abstract'
 }
 
 { #category : #'as yet unclassified' }

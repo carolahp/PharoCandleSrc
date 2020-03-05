@@ -1,7 +1,7 @@
 Class {
 	#name : #PCTrue,
 	#superclass : #PCObject,
-	#category : 'Kernel-Objects'
+	#category : #'Kernel-Objects'
 }
 
 { #category : #'as yet unclassified' }

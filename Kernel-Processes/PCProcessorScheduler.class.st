@@ -5,7 +5,7 @@ Class {
 		'suspendedProcessLists',
 		'activeProcess'
 	],
-	#category : 'Kernel-Processes'
+	#category : #'Kernel-Processes'
 }
 
 { #category : #'as yet unclassified' }

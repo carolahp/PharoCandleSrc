@@ -1,7 +1,7 @@
 Class {
 	#name : #PCArrayedCollection,
 	#superclass : #PCSequenceableCollection,
-	#category : 'Kernel-Collections-Abstract'
+	#category : #'Kernel-Collections-Abstract'
 }
 
 { #category : #'as yet unclassified' }

@@ -9,7 +9,7 @@ Class {
 		'threadId',
 		'errorHandler'
 	],
-	#category : 'Kernel-Processes'
+	#category : #'Kernel-Processes'
 }
 
 { #category : #'as yet unclassified' }
