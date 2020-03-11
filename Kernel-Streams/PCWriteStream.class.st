@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'writeLimit'
 	],
-	#category : 'Kernel-Streams'
+	#category : #'Kernel-Streams'
 }
 
 { #category : #'as yet unclassified' }
@@ -65,19 +65,6 @@ PCWriteStream >> pastEndPut: anObject [
 		, (collection class new: ((collection size max: 20) min: 20000)).
 	writeLimit := collection size.
 	collection at: (position := position + 1) put: anObject
-]
-
-{ #category : #'as yet unclassified' }
-PCWriteStream >> position: anInteger [
-	"Set my read position, but remember the high-water mark that was written."
-
-	readLimit := readLimit max: position.
-	super position: anInteger
-]
-
-{ #category : #'as yet unclassified' }
-PCWriteStream >> size [
-	^ readLimit := readLimit max: position
 ]
 
 { #category : #'as yet unclassified' }

@@ -17,30 +17,6 @@ PCMethodDictionary class >> new: nElements [
 ]
 
 { #category : #'as yet unclassified' }
-PCMethodDictionary >> add: anAssociation [
-	^ self at: anAssociation key put: anAssociation value
-]
-
-{ #category : #'as yet unclassified' }
-PCMethodDictionary >> associationsDo: aBlock [
-	| key |
-	tally = 0
-		ifTrue: [ ^ self ].
-	1 to: self basicSize do: [ :i | 
-		(key := self basicAt: i)
-			ifNotNil: [ aBlock value: key -> (array at: i) ] ]
-]
-
-{ #category : #'as yet unclassified' }
-PCMethodDictionary >> at: key ifAbsent: aBlock [
-	| index |
-	index := self findElementOrNil: key.
-	(self basicAt: index) == nil
-		ifTrue: [ ^ aBlock value ].
-	^ array at: index
-]
-
-{ #category : #'as yet unclassified' }
 PCMethodDictionary >> at: key put: value [
 	"Set the value at key to be value."
 	| index |
@@ -54,20 +30,6 @@ PCMethodDictionary >> at: key put: value [
 ]
 
 { #category : #'as yet unclassified' }
-PCMethodDictionary >> copy [
-	"Copy my values array."
-
-	^ self basicCopy withArray: array basicCopy
-]
-
-{ #category : #'as yet unclassified' }
-PCMethodDictionary >> do: aBlock [
-	tally = 0
-		ifTrue: [ ^ self ].
-	1 to: self basicSize do: [ :i | (self basicAt: i) ifNotNil: [ aBlock value: (array at: i) ] ]
-]
-
-{ #category : #'as yet unclassified' }
 PCMethodDictionary >> grow [
 	| newSelf key |
 	newSelf := self species new: self basicSize.	"This will double the size"
@@ -76,44 +38,6 @@ PCMethodDictionary >> grow [
 		key == nil
 			ifFalse: [ newSelf at: key put: (array at: i) ] ].
 	self become: newSelf
-]
-
-{ #category : #'as yet unclassified' }
-PCMethodDictionary >> includesKey: aSymbol [
-	"This override assumes that pointsTo is a fast primitive."
-
-	^ super pointsTo: aSymbol
-]
-
-{ #category : #'as yet unclassified' }
-PCMethodDictionary >> keyAt: index [
-	^ self basicAt: index
-]
-
-{ #category : #'as yet unclassified' }
-PCMethodDictionary >> keyAtIdentityValue: value ifAbsent: exceptionBlock [
-	"Answer the key whose value equals the argument, value. If there is none, answer the result of evaluating exceptionBlock."
-
-	| k |
-	1 to: self basicSize do: [ :i | 
-		value == (array at: i)
-			ifTrue: [ (k := self basicAt: i) ifNotNil: [ ^ k ] ] ].
-	^ exceptionBlock value
-]
-
-{ #category : #'as yet unclassified' }
-PCMethodDictionary >> keysDo: aBlock [
-	| key |
-	tally = 0
-		ifTrue: [ ^ self ].
-	1 to: self basicSize do: [ :i | (key := self basicAt: i) ifNotNil: [ aBlock value: key ] ]
-]
-
-{ #category : #'as yet unclassified' }
-PCMethodDictionary >> removeKey: key ifAbsent: errorBlock [
-	"Pharo Candle does not support method removal."
-
-	self shouldNotImplement
 ]
 
 { #category : #'as yet unclassified' }
@@ -130,13 +54,4 @@ PCMethodDictionary >> scanFor: anObject [
 		((element := self basicAt: index) == nil or: [ element == anObject ])
 			ifTrue: [ ^ index ] ].
 	^ 0	"No match AND no empty slot"
-]
-
-{ #category : #'as yet unclassified' }
-PCMethodDictionary >> swap: oneIndex with: otherIndex [
-	| element |
-	element := self basicAt: oneIndex.
-	self basicAt: oneIndex put: (self basicAt: otherIndex).
-	self basicAt: otherIndex put: element.
-	super swap: oneIndex with: otherIndex
 ]

@@ -1,7 +1,7 @@
 Class {
 	#name : #PCObject,
 	#superclass : #nil,
-	#category : 'Kernel-Objects'
+	#category : #'Kernel-Objects'
 }
 
 { #category : #'as yet unclassified' }
@@ -43,11 +43,6 @@ PCObject >> == anObject [
 
 	<primitive: 110>
 	self primitiveFailed
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> asLink [
-	^ PCValueLink value: self
 ]
 
 { #category : #'as yet unclassified' }
@@ -163,14 +158,6 @@ PCObject >> become: otherObject [
 ]
 
 { #category : #'as yet unclassified' }
-PCObject >> beep [
-	"Emit a short beep sound. Do nothing if the primitive fails."
-
-	<primitive: 140>
-	
-]
-
-{ #category : #'as yet unclassified' }
 PCObject >> class [
 	"Primitive. Answer the object which is the receiver's class. Essential. See Object documentation whatIsAPrimitive."
 
@@ -186,75 +173,6 @@ PCObject >> copy [
 ]
 
 { #category : #'as yet unclassified' }
-PCObject >> doesNotUnderstand: aMessage [
-	"Handle a failed attempt to send the given message to the receiver because the receiver does not implement or inherit a method for the message selector. The 'doesNotUnderstand:' message is sent by the virtual machine when a message send fails. If the receiver has an error handling block, invoke it. Otherwise, report an error."
-
-	"PCObject new argh"
-
-	| errorString handler |
-	errorString := 'Message not understood: ' , aMessage selector.
-	(handler := Processor activeProcess errorHandler)
-		ifNil: [ self handleExceptionName: errorString context: thisContext ]
-		ifNotNil: [ handler value: errorString value: self ].
-	^ aMessage sentTo: self	"resend the message if the user proceeds from the debugger"
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> error: aString [
-	"The default behavior for error: is the same as halt:. The code is replicated in order to avoid having an extra message send on the stack. This additional message is the one a subclass should override in order to change the error handling behavior."
-
-	"PCPbject new error: 'test error'"
-
-	| handler |
-	(handler := Processor activeProcess errorHandler)
-		ifNil: [ self handleExceptionName: aString context: thisContext ]
-		ifNotNil: [ handler value: aString value: self ]
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> errorImproperStore [
-	"Error: an improper store was attempted."
-
-	self error: 'Improper store into indexable object.'
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> errorNonIntegerIndex [
-	"Error: attempting to use a non-integer object as an index."
-
-	self error: 'Only integers should be used as indices.'
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> errorSubscriptBounds: index [
-	"Error: the given index is out of range."
-
-	self error: 'Subscript is out of bounds: ' , index printString
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> handleExceptionName: aString context: aContext [
-	"Handle an error or halt with the given name in the given context."
-
-	"Not yet implemented. For now, just print the error and exit."
-
-	PCObject superclass
-		ifNil: [ self
-				putString: aString;
-				putcr.
-			PCSystem exitToDebugger ]
-		ifNotNil: [ super error: aString ]	"exit to the VM debugger"
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> hash [
-	"Answer a SmallInteger whose value is related to the receiver's identity.
-	May be overridden, and should be overridden in any classes that define = "
-
-	^ self identityHash
-]
-
-{ #category : #'as yet unclassified' }
 PCObject >> identityHash [
 	"Answer a SmallInteger whose value is related to the receiver's identity. This method must not be overridden, except by SmallInteger. Primitive. Fails if the receiver is a SmallInteger. Essential. See Object documentation whatIsAPrimitive. Do not override!"
 
@@ -262,29 +180,8 @@ PCObject >> identityHash [
 ]
 
 { #category : #'as yet unclassified' }
-PCObject >> ifNil: nilBlock [
-	"Return self, or evaluate the block if I'm == nil (q.v.)"
-
-	^ self
-]
-
-{ #category : #'as yet unclassified' }
 PCObject >> ifNil: nilBlock ifNotNil: ifNotNilBlock [
 	"Evaluate the block, unless I'm == nil (q.v.)"
-
-	^ ifNotNilBlock value
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> ifNotNil: ifNotNilBlock [
-	"Evaluate the block, unless I'm == nil (q.v.)"
-
-	^ ifNotNilBlock value
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> ifNotNil: ifNotNilBlock ifNil: nilBlock [
-	"If I got here, I am not nil, so evaluate the block ifNotNilBlock"
 
 	^ ifNotNilBlock value
 ]
@@ -297,200 +194,18 @@ PCObject >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
-PCObject >> instVarAt: index [
-	"Primitive. Answer a fixed variable in an object. The numbering of the 
-	variables corresponds to the named instance variables. Fail if the index 
-	is not an Integer or is not the index of a fixed variable. Essential. See 
-	Object documentation whatIsAPrimitive."
+PCObject >> instVarAt: index put: anObject [
+	"Primitive. Store a value into a fixed variable in an object. The numbering of the
+	 variables corresponds to the named instance variables, followed by the indexed
+	 instance variables. Fail if the index is not an Integer or is not the index of a fixed
+	 variable or indexed variable. Essential. See Object documentation whatIsAPrimitive."
 
-	"Access beyond fixed variables."
-
-	<primitive: 73>
-	^ self basicAt: index - self class instSize
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> instVarAt: anInteger put: anObject [
-	"Primitive. Store a value into a fixed variable in the receiver. The 
-	numbering of the variables corresponds to the named instance variables. 
-	Fail if the index is not an Integer or is not the index of a fixed variable. 
-	Answer the value stored as the result. Using this message violates the 
-	principle that each object has sovereign control over the storing of 
-	values into its instance variables. Essential. See Object documentation 
-	whatIsAPrimitive."
-
-	"Access beyond fixed fields"
-
-	<primitive: 74>
-	^ self basicAt: anInteger - self class instSize put: anObject
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> isBehavior [
-	"Answer true if I am a subclass of Behavior."
-
-	^ false
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> isCompiledMethod [
-	^ false
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> isContextPart [
-	^ false
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> isInteger [
-	"Overridden to return true in Integer."
-
-	^ false
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> isKindOf: aClass [
-	"Answer whether the class, aClass, is a superclass or class of the receiver."
-
-	self class == aClass
-		ifTrue: [ ^ true ]
-		ifFalse: [ ^ self class inheritsFrom: aClass ]
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> isNil [
-	"Answer true if the receiver is nil."
-
-	^ false
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> isNumber [
-	"Overridden to return true in Number, natch"
-
-	^ false
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> isSelfEvaluating [
-	^ false
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> isSmallInteger [
-	^ false
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> mustBeBoolean [
-	"Error: attempt to use a non-Boolean object as if it were true or false. This message is sent by the virtual machine."
-
-	self error: 'NonBoolean receiver.'.
-	^ true
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> nextInstance [
-	"Primitive. Answer the next instance after the receiver in the enumeration of all instances of this class. Fails if all instances have been enumerated. Essential. See Object documentation whatIsAPrimitive."
-
-	<primitive: 78>
-	^ nil
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> nextObject [
-	"Primitive. Answer the next object after the receiver in the enumeration of all objects. Answer 0 when all objects have been enumerated."
-
-	<primitive: 139>
-	self primitiveFailed
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> perform: aSymbol [
-	"Primitive. Send the receiver the unary message indicated by the 
-	argument. The argument is the selector of the message. Invoke 
-	messageNotUnderstood: if the number of arguments expected by the 
-	selector is not zero. Optional. See Object documentation whatIsAPrimitive."
-
-	<primitive: 83>
-	^ self perform: aSymbol withArguments: (PCArray new: 0)
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> perform: aSymbol with: anObject [
-	"Primitive. Send the receiver the keyword message indicated by the 
-	arguments. The first argument is the selector of the message. The other 
-	argument is the argument of the message to be sent. Invoke 
-	messageNotUnderstood: if the number of arguments expected by the 
-	selector is not one. Optional. See Object documentation whatIsAPrimitive."
-
-	<primitive: 83>
-	^ self perform: aSymbol withArguments: (PCArray with: anObject)
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> perform: selector withArguments: anArray [
-	"Primitive. Send the receiver the keyword message indicated by the 
-	arguments. The argument, selector, is the selector of the message. The 
-	arguments of the message are the elements of anArray. Invoke 
-	messageNotUnderstood: if the number of arguments expected by the 
-	selector is not the same as the length of anArray. Essential. See Object 
-	documentation whatIsAPrimitive."
-
-	<primitive: 84>
-	selector class = PCSymbol
-		ifFalse: [ ^ self error: 'selector argument must be a Symbol' ].
-	self primitiveFailed
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> perform: selector withArguments: argArray inSuperclass: lookupClass [
-	"NOTE:  This is just like perform:withArguments: except that the message lookup process begins, not with the receivers's class, but with the supplied superclass instead. It will fail if lookupcannot be found among the receiver's superclasses. Primitive. Essential. See Object documentation whatIsAPrimitive."
-
-	<primitive: 100>
-	selector class = PCSymbol
-		ifFalse: [ ^ self error: 'selector argument must be a Symbol' ].
-	selector numArgs = argArray size
-		ifFalse: [ ^ self error: 'incorrect number of arguments' ].
-	(self class == lookupClass
-		or: [ self class inheritsFrom: lookupClass ])
-		ifFalse: [ ^ self error: 'lookupClass is not in my inheritance chain' ].
-	self primitiveFailed
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> pointsTo: anObject [
-	"Answer true if the receiver contains a reference to the given object."
-
-	<primitive: 132>
-	1 to: self class instSize do: [ :i | 
-		(self instVarAt: i) == anObject
-			ifTrue: [ ^ true ] ].
-	1 to: self basicSize do: [ :i | 
-		(self basicAt: i) == anObject
-			ifTrue: [ ^ true ] ].
-	^ false
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> primitiveFailed [
-	"Announce that a primitive has failed."
-
-	self error: 'a primitive has failed'
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> printOn: aStream [
-	"Print a description of me on the given stream."
-
-	| n |
-	n := self class name.
-	aStream
-		nextPutAll:
-			(n first isVowel
-				ifTrue: [ 'an ' ]
-				ifFalse: [ 'a ' ]) , n
+	<primitive: 174 error: ec>
+	 (index isInteger 
+		and: [ index between: 1 and: self class instSize + self basicSize]) 
+			ifFalse: [ ^ self errorSubscriptBounds: index ].
+	self isReadOnlyObject 
+		ifTrue: [ ^ self modificationForbiddenFor: #instVarAt:put: index: index value: anObject ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -504,55 +219,6 @@ PCObject >> printString [
 ]
 
 { #category : #'as yet unclassified' }
-PCObject >> putAscii: asciiValue [
-	"Put the given ascii character (0..255) to standard output. Do nothing if this primitive is not supported."
-
-	<primitive: 249>
-	
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> putString: aString [
-	"Write the given string to the standard output stream."
-
-	aString do: [ :ch | self putAscii: ch asciiValue ]
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> putcr [
-	"Write a carriage return to the standard output stream."
-
-	self putAscii: 13
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> respondsTo: aSymbol [
-	"Answer whether the receiver's class or one of its superclasses has the given symbol as a message selector."
-
-	^ self class canUnderstand: aSymbol
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> shouldBePrintedAsLiteral [
-	^ false
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> shouldNotImplement [
-	"Announce that, although the receiver inherits this message, it should not implement it."
-
-	self error: 'This message is not appropriate for this object'
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> someObject [
-	"Primitive. Answer the first object in the enumeration of all objects."
-
-	<primitive: 138>
-	self primitiveFailed
-]
-
-{ #category : #'as yet unclassified' }
 PCObject >> species [
 	"Answer the preferred class for reconstructing the receiver, which is typically some kind of collection. For example, the response to this message determines the type of object returned by the collect: or select: messages. Species and class are not always the same. For example, the species of Interval is Array."
 
@@ -560,41 +226,8 @@ PCObject >> species [
 ]
 
 { #category : #'as yet unclassified' }
-PCObject >> subclassResponsibility [
-	"This message sets up a framework for the behavior of subclasses of this class. Announce that the subclass should have implemented this message."
-
-	self error: 'My subclass should have overridden one of my messages.'
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> tryPrimitive: primIndex withArgs: argumentArray [
-	"This method is a template that the Smalltalk simulator uses to 
-	execute primitives. See Object documentation whatIsAPrimitive."
-
-	<primitive: 118 error: #code>
-	self primitiveFailed
-]
-
-{ #category : #'as yet unclassified' }
 PCObject >> yourself [
 	"Answer the receiver. Useful in cascaded message expressions."
 
 	^ self
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> ~= anObject [
-	"Answer whether the receiver and the argument do not represent the same object."
-
-	^ self = anObject == false
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> ~~ anObject [
-	"Answer whether the receiver and the argument are not the same object 
-	(do not have the same object pointer)."
-
-	^ self == anObject
-		ifTrue: [ false ]
-		ifFalse: [ true ]
 ]

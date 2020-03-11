@@ -1,15 +1,8 @@
 Class {
 	#name : #PCFalse,
 	#superclass : #PCTrue,
-	#category : 'Kernel-Objects'
+	#category : #'Kernel-Objects'
 }
-
-{ #category : #'as yet unclassified' }
-PCFalse >> & aBoolean [
-	"Answer true if both the receiver AND the argument are true. Unlike and:, the argument is always evaluted."
-
-	^ false
-]
 
 { #category : #'as yet unclassified' }
 PCFalse >> and: alternativeBlock [
@@ -51,16 +44,4 @@ PCFalse >> or: alternativeBlock [
 	"Answer true if either the receiver OR the argument are true. Only evaluate the given block if the receiver is false."
 
 	^ alternativeBlock value
-]
-
-{ #category : #'as yet unclassified' }
-PCFalse >> printOn: aStream [
-	aStream nextPutAll: 'false'
-]
-
-{ #category : #'as yet unclassified' }
-PCFalse >> | aBoolean [
-	"Answer true if either the receiver OR the argument are true. Unlike or:, the argument is always evaluted."
-
-	^ aBoolean
 ]

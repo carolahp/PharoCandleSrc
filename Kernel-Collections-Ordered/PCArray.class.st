@@ -2,7 +2,7 @@ Class {
 	#name : #PCArray,
 	#superclass : #PCArrayedCollection,
 	#type : #variable,
-	#category : 'Kernel-Collections-Ordered'
+	#category : #'Kernel-Collections-Ordered'
 }
 
 { #category : #'as yet unclassified' }
@@ -30,15 +30,6 @@ PCArray >> elementsExchangeIdentityWith: otherArray [
 ]
 
 { #category : #'as yet unclassified' }
-PCArray >> hash [
-	"Make sure that equal (=) arrays hash equally."
-
-	self size = 0
-		ifTrue: [ ^ 17171 ].
-	^ (self at: 1) hash + (self at: self size) hash
-]
-
-{ #category : #'as yet unclassified' }
 PCArray >> printOn: aStream [
 	aStream nextPutAll: '#('.
 	self
@@ -46,16 +37,4 @@ PCArray >> printOn: aStream [
 			each printOn: aStream.
 			aStream space ].
 	aStream nextPut: $)
-]
-
-{ #category : #'as yet unclassified' }
-PCArray >> replaceFrom: start to: stop with: replacement startingAt: repStart [
-	"Primitive. This destructively replaces elements from start to stop in the receiver starting at index, repStart, in the collection, replacement. Answer the receiver. Range checks are performed in the primitive only. Optional. See Object documentation whatIsAPrimitive."
-
-	<primitive: 105>
-	super
-		replaceFrom: start
-		to: stop
-		with: replacement
-		startingAt: repStart
 ]

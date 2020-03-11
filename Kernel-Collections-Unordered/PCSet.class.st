@@ -5,7 +5,7 @@ Class {
 		'tally',
 		'array'
 	],
-	#category : 'Kernel-Collections-Unordered'
+	#category : #'Kernel-Collections-Unordered'
 }
 
 { #category : #'as yet unclassified' }
@@ -26,81 +26,10 @@ PCSet class >> new: nElements [
 ]
 
 { #category : #'as yet unclassified' }
-PCSet >> = aSet [
-	(aSet isKindOf: PCSet)
-		ifFalse: [ ^ false ].
-	self size = aSet size
-		ifFalse: [ ^ false ].
-	self
-		do: [ :each | 
-			(aSet includes: each)
-				ifFalse: [ ^ false ] ].
-	^ true
-]
-
-{ #category : #'as yet unclassified' }
-PCSet >> add: newObject [
-	"Add an element. User error instead of halt. go 10/1/97 09:33"
-
-	| index |
-	newObject == nil
-		ifTrue: [ self error: 'Sets cannot meaningfully contain nil as an element' ].
-	index := self findElementOrNil: newObject.
-	(array at: index) == nil
-		ifTrue: [ self atNewIndex: index put: newObject ].
-	^ newObject
-]
-
-{ #category : #'as yet unclassified' }
-PCSet >> asArray [
-	"Return an array whose elements are those of the receiver.  "
-
-	| s |
-	s := PCWriteStream on: (PCArray new: self size).
-	self do: [ :el | s nextPut: el ].
-	^ s contents
-]
-
-{ #category : #'as yet unclassified' }
-PCSet >> asSet [
-	^ self
-]
-
-{ #category : #'as yet unclassified' }
 PCSet >> atNewIndex: index put: anObject [
 	array at: index put: anObject.
 	tally := tally + 1.
 	self fullCheck
-]
-
-{ #category : #'as yet unclassified' }
-PCSet >> collect: aBlock [
-	"Return a Set containing the result of evaluating aBlock for each element of this set."
-
-	| newSet |
-	tally = 0
-		ifTrue: [ ^ PCSet new: 2 ].
-	newSet := PCSet new: self size.
-	array
-		do: [ :each | 
-			each == nil
-				ifFalse: [ newSet add: (aBlock value: each) ] ].
-	^ newSet
-]
-
-{ #category : #'as yet unclassified' }
-PCSet >> copy [
-	^ self basicCopy withArray: array basicCopy
-]
-
-{ #category : #'as yet unclassified' }
-PCSet >> do: aBlock [
-	tally = 0
-		ifTrue: [ ^ self ].
-	array
-		do: [ :element | 
-			element == nil
-				ifFalse: [ aBlock value: element ] ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -114,24 +43,6 @@ PCSet >> findElementOrNil: anObject [
 	nor even an empty slot.  No hashed set is ever supposed to get
 	completely full."
 	self error: 'There is no free space in this set!'
-]
-
-{ #category : #'as yet unclassified' }
-PCSet >> fixCollisionsFrom: index [
-	"The element at index has been removed and replaced by nil.
-	This method moves forward from there, relocating any entries
-	that had been placed below due to collisions with this one"
-
-	| length oldIndex newIndex element |
-	oldIndex := index.
-	length := array size.
-	[ oldIndex = length
-		ifTrue: [ oldIndex := 1 ]
-		ifFalse: [ oldIndex := oldIndex + 1 ].
-	(element := self keyAt: oldIndex) == nil ]
-		whileFalse: [ newIndex := self findElementOrNil: element.
-			oldIndex = newIndex
-				ifFalse: [ self swap: oldIndex with: newIndex ] ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -157,74 +68,9 @@ PCSet >> grow [
 ]
 
 { #category : #'as yet unclassified' }
-PCSet >> includes: anObject [
-	^ (array at: (self findElementOrNil: anObject)) ~~ nil
-]
-
-{ #category : #'as yet unclassified' }
 PCSet >> init: n [
 	"Initialize array to an array size of n."
 
 	array := PCArray new: n.
 	tally := 0
-]
-
-{ #category : #'as yet unclassified' }
-PCSet >> keyAt: index [
-	"May be overridden by subclasses so that fixCollisions will work"
-
-	^ array at: index
-]
-
-{ #category : #'as yet unclassified' }
-PCSet >> noCheckAdd: anObject [
-	array at: (self findElementOrNil: anObject) put: anObject.
-	tally := tally + 1
-]
-
-{ #category : #'as yet unclassified' }
-PCSet >> remove: oldObject ifAbsent: aBlock [
-	| index |
-	index := self findElementOrNil: oldObject.
-	(array at: index) == nil
-		ifTrue: [ ^ aBlock value ].
-	array at: index put: nil.
-	tally := tally - 1.
-	self fixCollisionsFrom: index.
-	^ oldObject
-]
-
-{ #category : #'as yet unclassified' }
-PCSet >> scanFor: anObject [
-	"Scan the key array for the first slot containing either a nil (indicating an empty slot) or an element that matches anObject. Answer the index of that slot or zero if no slot is found. This method will be overridden in various subclasses that have different interpretations for matching elements."
-
-	| element start finish |
-	start := anObject hash \\ array size + 1.
-	finish := array size.	"Search from (hash mod size) to the end."
-	start to: finish do: [ :index | 
-		((element := array at: index) == nil or: [ element = anObject ])
-			ifTrue: [ ^ index ] ].	"Search from 1 to where we started."
-	1 to: start - 1 do: [ :index | 
-		((element := array at: index) == nil or: [ element = anObject ])
-			ifTrue: [ ^ index ] ].
-	^ 0	"No match AND no empty slot"
-]
-
-{ #category : #'as yet unclassified' }
-PCSet >> size [
-	^ tally
-]
-
-{ #category : #'as yet unclassified' }
-PCSet >> swap: oneIndex with: otherIndex [
-	"May be overridden by subclasses so that fixCollisions will work"
-
-	array swap: oneIndex with: otherIndex
-]
-
-{ #category : #'as yet unclassified' }
-PCSet >> withArray: anArray [
-	"private -- for use only in copy"
-
-	array := anArray
 ]

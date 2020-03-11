@@ -8,7 +8,7 @@ Class {
 		'classVariablesNames',
 		'formats'
 	],
-	#category : 'Kernel-Classes'
+	#category : #'Kernel-Classes'
 }
 
 { #category : #'as yet unclassified' }
@@ -36,11 +36,6 @@ PCClassBuilder >> bePointers [
 { #category : #'as yet unclassified' }
 PCClassBuilder >> beVariable [
 	^ formats := #(#variable #pointers)
-]
-
-{ #category : #'as yet unclassified' }
-PCClassBuilder >> beWeak [
-	^ formats := #(#weak #variable #pointers)
 ]
 
 { #category : #'as yet unclassified' }
@@ -78,11 +73,6 @@ PCClassBuilder >> classVariableNames [
 { #category : #'as yet unclassified' }
 PCClassBuilder >> classVariableNames: anArray [
 	classVariablesNames := anArray
-]
-
-{ #category : #'as yet unclassified' }
-PCClassBuilder >> compactClassIndex [
-	^ self compactClassIndexFor: name
 ]
 
 { #category : #'as yet unclassified' }
@@ -167,18 +157,8 @@ PCClassBuilder >> isImmediate [
 ]
 
 { #category : #'as yet unclassified' }
-PCClassBuilder >> isPointers [
-	^ formats includes: #pointers
-]
-
-{ #category : #'as yet unclassified' }
 PCClassBuilder >> isVariable [
 	^ formats includes: #variable
-]
-
-{ #category : #'as yet unclassified' }
-PCClassBuilder >> isWeak [
-	^ formats includes: #weak
 ]
 
 { #category : #'as yet unclassified' }

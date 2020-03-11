@@ -64,18 +64,6 @@ PCSmallInteger >> - aNumber [
 ]
 
 { #category : #'as yet unclassified' }
-PCSmallInteger >> / aNumber [
-	"Primitive. Divide the receiver by the argument and return the result if the division is exact. Fail if the result is not a whole integer. Fail if the argument is 0 or is not a SmallInteger. Optional. No Lookup. See Object documentation whatIsAPrimitive."
-
-	<primitive: 10>
-	aNumber = 0
-		ifTrue: [ ^ self error: 'division by 0' ].
-	aNumber isSmallInteger
-		ifTrue: [ ^ self asFloat / aNumber asFloat ]
-		ifFalse: [ ^ super / aNumber ]
-]
-
-{ #category : #'as yet unclassified' }
 PCSmallInteger >> // aNumber [
 	"Primitive. Divide the receiver by the argument and answer with the
 	result. Round the result down towards negative infinity to make it a
@@ -153,27 +141,6 @@ PCSmallInteger >> \\ aNumber [
 ]
 
 { #category : #'as yet unclassified' }
-PCSmallInteger >> asFloat [
-	"Primitive. Answer a Float that represents the value of the receiver.
-	Essential. See Object documentation whatIsAPrimitive."
-
-	<primitive: 40>
-	self primitiveFailed
-]
-
-{ #category : #'as yet unclassified' }
-PCSmallInteger >> basicCopy [
-	"I am immutable (and not really an object), so answer myself."
-
-	
-]
-
-{ #category : #'as yet unclassified' }
-PCSmallInteger >> basicIdentityHash [
-	^ self
-]
-
-{ #category : #'as yet unclassified' }
 PCSmallInteger >> bitAnd: arg [
 	"Primitive. Answer an Integer whose bits are the logical OR of the
 	receiver's bits and those of the argument, arg.
@@ -217,21 +184,6 @@ PCSmallInteger >> bitShift: arg [
 ]
 
 { #category : #'as yet unclassified' }
-PCSmallInteger >> bitXor: arg [
-	"Primitive. Answer an Integer whose bits are the logical XOR of the
-	receiver's bits and those of the argument, arg.
-	Numbers are interpreted as having 2's-complement representation.
-	Essential.  See Object documentation whatIsAPrimitive."
-
-	<primitive: 16>
-	self >= 0
-		ifTrue: [ ^ arg bitXor: self ].
-	^ arg < 0
-		ifTrue: [ self bitInvert bitXor: arg bitInvert ]
-		ifFalse: [ (self bitInvert bitXor: arg) bitInvert ]
-]
-
-{ #category : #'as yet unclassified' }
 PCSmallInteger >> digitAt: n [
 	"Answer the value of an indexable field in the receiver. Fail if the 
 	argument (the index) is not an Integer or is out of bounds."
@@ -245,43 +197,6 @@ PCSmallInteger >> digitAt: n [
 			"Can't negate minVal -- treat specially"
 			^ (0 - self bitShift: (1 - n) * 8) bitAnd: 16rFF ]
 		ifFalse: [ ^ (self bitShift: (1 - n) * 8) bitAnd: 16rFF ]
-]
-
-{ #category : #'as yet unclassified' }
-PCSmallInteger >> digitAt: n put: value [
-	"Fails. The digits of a small integer can not be modified."
-
-	self error: 'You cannot store in a SmallInteger'
-]
-
-{ #category : #'as yet unclassified' }
-PCSmallInteger >> digitLength [
-	"Answer the number of indexable fields in the receiver. This value is the 
-	same as the largest legal subscript. Included so that a SmallInteger can 
-	behave like a LargePositiveInteger or LargeNegativeInteger."
-
-	(self < 16r100 and: [ self > -16r100 ])
-		ifTrue: [ ^ 1 ].
-	(self < 16r10000 and: [ self > -16r10000 ])
-		ifTrue: [ ^ 2 ].
-	(self < 16r1000000 and: [ self > -16r1000000 ])
-		ifTrue: [ ^ 3 ].
-	^ 4
-]
-
-{ #category : #'as yet unclassified' }
-PCSmallInteger >> hash [
-	^ self
-]
-
-{ #category : #'as yet unclassified' }
-PCSmallInteger >> hashMultiply [
-	| low |
-	low := self bitAnd: 16383.
-	^ 16r260D * low
-		+
-			((16r260D * (self bitShift: -14) + (16r0065 * low) bitAnd: 16383)
-				* 16384) bitAnd: 16r0FFFFFFF
 ]
 
 { #category : #'as yet unclassified' }
@@ -300,62 +215,4 @@ PCSmallInteger >> highBit [
 		whileFalse: [ shifted := shifted bitShift: -1.
 			bitNo := bitNo + 1 ].
 	^ bitNo
-]
-
-{ #category : #'as yet unclassified' }
-PCSmallInteger >> identityHash [
-	^ self hashMultiply
-]
-
-{ #category : #'as yet unclassified' }
-PCSmallInteger >> isSmallInteger [
-	^ true
-]
-
-{ #category : #'as yet unclassified' }
-PCSmallInteger >> printOn: aStream base: b [
-	"Refer to the comment in Integer|printOn:base:."
-
-	"self maxVal printStringBase: 2"
-
-	| digitsInReverse x i |
-	self < 0
-		ifTrue: [ aStream nextPut: $-.
-			^ self negated printOn: aStream base: b ].
-	b = 10
-		ifFalse: [ b printOn: aStream.
-			aStream nextPut: $r ].
-	digitsInReverse := PCArray new: 32.
-	x := self.
-	i := 0.
-	[ x >= b ]
-		whileTrue: [ digitsInReverse at: (i := i + 1) put: x \\ b.
-			x := x // b ].
-	digitsInReverse at: (i := i + 1) put: x.
-	[ i > 0 ]
-		whileTrue: [ aStream nextPut: (PCCharacter digitValue: (digitsInReverse at: i)).
-			i := i - 1 ]
-]
-
-{ #category : #'as yet unclassified' }
-PCSmallInteger >> quo: aNumber [
-	"Primitive. Divide the receiver by the argument and answer with the result. Round the result down towards zero to make it a whole integer. Fail if the argument is 0 or is not a MSmallInteger. Optional. See Object documentation whatIsAPrimitive."
-
-	<primitive: 13>
-	aNumber = 0
-		ifTrue: [ ^ self error: 'Attempt to divide by zero' ].
-	aNumber class isSmallInteger
-		ifTrue: [ self primitiveFailed ]
-		ifFalse: [ ^ super quo: aNumber ]
-]
-
-{ #category : #'as yet unclassified' }
-PCSmallInteger >> ~= aNumber [
-	"Primitive. Compare the receiver with the argument and answer true if
-	the receiver is not equal to the argument. Otherwise answer false. Fail if
-	the argument is not a SmallInteger. Essential. No Lookup. See Object
-	documentation whatIsAPrimitive."
-
-	<primitive: 8>
-	^ super ~= aNumber
 ]
