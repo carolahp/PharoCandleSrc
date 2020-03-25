@@ -36,6 +36,13 @@ PCCompiledMethod >> isCompiledMethod [
 ]
 
 { #category : #'as yet unclassified' }
+PCCompiledMethod >> numArgs [
+	"Answer the number of arguments the receiver takes."
+
+	^ (self header bitShift: -24) bitAnd: 16r0F
+]
+
+{ #category : #'as yet unclassified' }
 PCCompiledMethod >> numLiterals [
 	"Answer the number of literals used by the receiver."
 
@@ -64,4 +71,14 @@ PCCompiledMethod >> objectAt: index put: value [
 
 	<primitive: 69>
 	self primitiveFailed
+]
+
+{ #category : #'as yet unclassified' }
+PCCompiledMethod >> primitive [
+	"Answer the primitive index associated with the receiver.
+	 Zero indicates that this is not a primitive method."
+	| initialPC |
+	^(self header anyMask: 65536) "Is the hasPrimitive? flag set?"
+		ifTrue: [(self at: (initialPC := self initialPC) + 1) + ((self at: initialPC + 2) bitShift: 8)]
+		ifFalse: [0]
 ]

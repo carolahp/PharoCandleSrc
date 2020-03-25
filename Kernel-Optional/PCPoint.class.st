@@ -9,6 +9,15 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+PCPoint class >> new [
+ 	PCSystem log: 'PCPoint new'. 
+	PCSystem log: thisContext hola.
+	PCSystem log: thisContext sender asString.
+	
+	^ super new
+]
+
+{ #category : #'as yet unclassified' }
 PCPoint class >> r: rho degrees: theta [
 	"Answer an instance of me with polar coordinates rho and theta."
 
@@ -157,6 +166,27 @@ PCPoint >> max: aPoint [
 ]
 
 { #category : #'as yet unclassified' }
+PCPoint >> metodoconparametro: anArgument [
+	
+ 	PCSystem log: 'PCPoint >> metodoconparametro:'. 
+	PCSystem log: thisContext hola.
+	PCSystem log: thisContext sender asString.
+	PCSystem log: thisContext receiver asString.
+	
+	^ 43
+]
+
+{ #category : #'as yet unclassified' }
+PCPoint >> metodosinparametro [
+	
+ 	PCSystem log: 'PCPoint >> metodosinparametro'. 
+	PCSystem log: thisContext hola.
+	PCSystem log: thisContext sender asString.
+	PCSystem log: thisContext receiver asString.
+	^ 42
+]
+
+{ #category : #'as yet unclassified' }
 PCPoint >> min: aPoint [
 	"Answer a new Point whose x and y are the minimum of the receiver's and the argument point's x and y."
 
@@ -205,6 +235,12 @@ PCPoint >> setR: rho degrees: theta [
 
 { #category : #'as yet unclassified' }
 PCPoint >> setX: xValue setY: yValue [
+	PCSystem log: 'in setx:sety:'.
+
+	PCSystem log: (thisContext class asString).
+	PCSystem log: (thisContext asString).
+	PCSystem log: (thisContext hola).
+
 	x := xValue.
 	y := yValue
 ]

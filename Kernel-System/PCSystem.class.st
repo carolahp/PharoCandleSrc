@@ -189,8 +189,19 @@ PCSystem class >> specialObjectsArray: anArray [
 
 { #category : #'as yet unclassified' }
 PCSystem class >> start [
-	self log: 'Welcome to Pharo Candle edition!' .
-	self log: self tinyBenchmarks.
+	| point |
+	self log: 'Welcome to Pharo Candle edition!'.
+	self log: (thisContext class asString).
+	self log: (thisContext hola asString).
+	
+	
+	self log: (thisContext sender asString).
+	self log: (thisContext sender class asString).
+	
+	point := PCPoint new.
+	point metodosinparametro.
+	point metodoconparametro:1.
+	
 	self quit
 ]
 

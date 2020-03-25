@@ -1,5 +1,5 @@
 PBRepository { 
-	#languageName : #'candleWithSystemDictionary',
+	#languageName : #'candlethiscontext',
 	#tonelPath: #'.',
 	#languageDefinitionClass: #PBLanguageDefinitionPharoCandle
 }

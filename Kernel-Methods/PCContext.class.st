@@ -1,11 +1,9 @@
 Class {
 	#name : #PCContext,
 	#superclass : #PCObject,
-	#type : #variable,
 	#instVars : [
 		'sender',
-		'pc',
-		'stackp'
+		'pc'
 	],
 	#category : #'Kernel-Methods'
 }

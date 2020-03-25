@@ -100,6 +100,11 @@ PCBlock >> outerContext [
 ]
 
 { #category : #'as yet unclassified' }
+PCBlock >> startpc [
+	^startpc
+]
+
+{ #category : #'as yet unclassified' }
 PCBlock >> value [
 	"Evaluate this block without any arguments."
 

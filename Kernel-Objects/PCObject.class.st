@@ -305,8 +305,11 @@ PCObject >> instVarAt: index [
 
 	"Access beyond fixed variables."
 
-	<primitive: 73>
-	^ self basicAt: index - self class instSize
+"	<primitive: 73>
+	^ self basicAt: index - self class instSize"
+	
+	<primitive: 173 error: ec>
+	self primitiveFailed
 ]
 
 { #category : #'as yet unclassified' }
