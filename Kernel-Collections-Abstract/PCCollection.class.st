@@ -136,6 +136,16 @@ PCCollection >> includes: anObject [
 ]
 
 { #category : #'as yet unclassified' }
+PCCollection >> inject: thisValue into: binaryBlock [ 
+	"Accumulate a running value associated with evaluating the argument, binaryBlock, with the current value of the argument, thisValue, and the receiver as block arguments."
+	
+	| nextValue |
+	nextValue := thisValue.
+	self do: [:each | nextValue := binaryBlock value: nextValue value: each].
+	^nextValue
+]
+
+{ #category : #'as yet unclassified' }
 PCCollection >> isEmpty [
 	"Answer whether the receiver contains any elements."
 

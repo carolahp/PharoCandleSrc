@@ -10,9 +10,17 @@ Class {
 
 { #category : #'as yet unclassified' }
 PCPoint class >> new [
- 	PCSystem log: 'PCPoint new'. 
-	PCSystem log: thisContext hola.
-	PCSystem log: thisContext sender asString.
+ 	"PCSystem log: 'from PCPoint new'. 
+	PCSystem log: '   thisContext hola : ',thisContext hola.
+	PCSystem log: '   thisContext sender : ',thisContext sender asString.
+	PCSystem log: '   thisContext sender class : ',thisContext sender class asString.
+	PCSystem log: '   thisContext closureOrNil : ',thisContext closureOrNil asString.
+	PCSystem log: '   thisContext closureOrNil class : ',thisContext closureOrNil class asString.
+	PCSystem log: '   thisContext receiver : ',thisContext receiver asString.
+	PCSystem log: '   thisContext receiver class : ',thisContext receiver class asString.
+	PCSystem log: '   thisContext method : ',thisContext method asString.
+	PCSystem log: '   thisContext method class : ',thisContext method class asString.
+	"
 	
 	^ super new
 ]
@@ -168,21 +176,34 @@ PCPoint >> max: aPoint [
 { #category : #'as yet unclassified' }
 PCPoint >> metodoconparametro: anArgument [
 	
- 	PCSystem log: 'PCPoint >> metodoconparametro:'. 
-	PCSystem log: thisContext hola.
-	PCSystem log: thisContext sender asString.
-	PCSystem log: thisContext receiver asString.
-	
+ 	PCSystem log: 'from PCPoint >> metodoconparametro:'. 
+	PCSystem log: '   thisContext hola : ',thisContext hola.
+	PCSystem log: '   thisContext sender : ',thisContext sender asString.
+	PCSystem log: '   thisContext sender class : ',thisContext sender class asString.
+	PCSystem log: '   thisContext closureOrNil : ',thisContext closureOrNil asString.
+	PCSystem log: '   thisContext closureOrNil class : ',thisContext closureOrNil class asString.
+	PCSystem log: '   thisContext receiver : ',thisContext receiver asString.
+	PCSystem log: '   thisContext receiver class : ',thisContext receiver class asString.
+	"PCSystem log: '   thisContext method : ',thisContext method asString.
+	PCSystem log: '   thisContext method class : ',thisContext method class asString.
+	"
 	^ 43
 ]
 
 { #category : #'as yet unclassified' }
 PCPoint >> metodosinparametro [
 	
- 	PCSystem log: 'PCPoint >> metodosinparametro'. 
-	PCSystem log: thisContext hola.
-	PCSystem log: thisContext sender asString.
-	PCSystem log: thisContext receiver asString.
+ 	PCSystem log: 'from PCPoint >> metodosinparametro'. 
+	PCSystem log: '   thisContext hola : ',thisContext hola.
+	PCSystem log: '   thisContext sender : ',thisContext sender asString.
+	PCSystem log: '   thisContext sender class : ',thisContext sender class asString.
+	PCSystem log: '   thisContext closureOrNil : ',thisContext closureOrNil asString.
+	PCSystem log: '   thisContext closureOrNil class : ',thisContext closureOrNil class asString.
+	PCSystem log: '   thisContext receiver : ',thisContext receiver asString.
+	PCSystem log: '   thisContext receiver class : ',thisContext receiver class asString.
+	"PCSystem log: '   thisContext method : ',thisContext method asString.
+	PCSystem log: '   thisContext method class : ',thisContext method class asString.
+	"
 	^ 42
 ]
 
@@ -235,12 +256,7 @@ PCPoint >> setR: rho degrees: theta [
 
 { #category : #'as yet unclassified' }
 PCPoint >> setX: xValue setY: yValue [
-	PCSystem log: 'in setx:sety:'.
-
-	PCSystem log: (thisContext class asString).
-	PCSystem log: (thisContext asString).
-	PCSystem log: (thisContext hola).
-
+	
 	x := xValue.
 	y := yValue
 ]

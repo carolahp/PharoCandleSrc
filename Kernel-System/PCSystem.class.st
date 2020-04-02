@@ -190,13 +190,17 @@ PCSystem class >> specialObjectsArray: anArray [
 { #category : #'as yet unclassified' }
 PCSystem class >> start [
 	| point |
-	self log: 'Welcome to Pharo Candle edition!'.
-	self log: (thisContext class asString).
-	self log: (thisContext hola asString).
-	
-	
-	self log: (thisContext sender asString).
-	self log: (thisContext sender class asString).
+	self log: 'Welcome to Pharo Candle accessing contexts!'.
+	self log: 'from System >> start'.
+	PCSystem log: '   thisContext hola : ',thisContext hola.
+	PCSystem log: '   thisContext sender : ',thisContext sender asString.
+	PCSystem log: '   thisContext sender class : ',thisContext sender class asString.
+	PCSystem log: '   thisContext closureOrNil : ',thisContext closureOrNil asString.
+	PCSystem log: '   thisContext closureOrNil class : ',thisContext closureOrNil class asString.
+	PCSystem log: '   thisContext receiver : ',thisContext receiver asString.
+	PCSystem log: '   thisContext receiver class : ',thisContext receiver class asString.
+	PCSystem log: '   thisContext method class : ',thisContext method class asString.
+	PCSystem log: '   thisContext method : ',thisContext method asString.
 	
 	point := PCPoint new.
 	point metodosinparametro.

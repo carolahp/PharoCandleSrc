@@ -20,6 +20,8 @@ PCBlock >> asContext [
 PCBlock >> asContextWithSender: aContext [
 	"Inner private support method for evaluation.  Do not use unless you know what you're doing."
 
+	PCSystem log: 'alguien llamo PCBlock >> asContextWithSender:'.
+	
 	^ (PCMethodContext newForMethod: outerContext method)
 		setSender: aContext
 			receiver: outerContext receiver
@@ -100,7 +102,7 @@ PCBlock >> outerContext [
 ]
 
 { #category : #'as yet unclassified' }
-PCBlock >> startpc [
+PCBlock >> startpc [ 
 	^startpc
 ]
 

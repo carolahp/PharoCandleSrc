@@ -17,6 +17,11 @@ PCMethodContext >> asContext [
 ]
 
 { #category : #'as yet unclassified' }
+PCMethodContext >> closureOrNil [
+	^ closureOrNil
+]
+
+{ #category : #'as yet unclassified' }
 PCMethodContext >> hola [
 	^'hola soy un contexto'
 ]
