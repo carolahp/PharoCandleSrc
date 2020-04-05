@@ -190,9 +190,9 @@ PCSystem class >> specialObjectsArray: anArray [
 { #category : #'as yet unclassified' }
 PCSystem class >> start [
 	| point |
+	thisContext sender asString.
 	self log: 'Welcome to Pharo Candle accessing contexts!'.
 	self log: 'from System >> start'.
-	PCSystem log: '   thisContext hola : ',thisContext hola.
 	PCSystem log: '   thisContext sender : ',thisContext sender asString.
 	PCSystem log: '   thisContext sender class : ',thisContext sender class asString.
 	PCSystem log: '   thisContext closureOrNil : ',thisContext closureOrNil asString.

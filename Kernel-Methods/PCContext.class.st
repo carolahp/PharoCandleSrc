@@ -30,10 +30,3 @@ PCContext >> blockCopy: numArgs [
 PCContext >> isContextPart [
 	^ true
 ]
-
-{ #category : #'as yet unclassified' }
-PCContext >> sender [
-	"Answer the context that sent the message that created the receiver."
-
-	^ sender
-]

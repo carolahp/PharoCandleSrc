@@ -22,11 +22,6 @@ PCMethodContext >> closureOrNil [
 ]
 
 { #category : #'as yet unclassified' }
-PCMethodContext >> hola [
-	^'hola soy un contexto'
-]
-
-{ #category : #'as yet unclassified' }
 PCMethodContext >> home [
 	"Answer the context in which the receiver was defined."
 
@@ -67,6 +62,11 @@ PCMethodContext >> removeSelf [
 	result := receiver.
 	receiver := nil.
 	^ result
+]
+
+{ #category : #'as yet unclassified' }
+PCMethodContext >> sender [ 
+	^ sender
 ]
 
 { #category : #'as yet unclassified' }
