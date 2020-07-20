@@ -5,7 +5,7 @@ Class {
 		'firstLink',
 		'lastLink'
 	],
-	#category : 'Kernel-Processes'
+	#category : #'Kernel-Processes'
 }
 
 { #category : #'as yet unclassified' }

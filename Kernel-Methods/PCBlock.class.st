@@ -6,7 +6,7 @@ Class {
 		'startpc',
 		'nargs'
 	],
-	#category : 'Kernel-Methods'
+	#category : #'Kernel-Methods'
 }
 
 { #category : #'as yet unclassified' }
@@ -20,6 +20,8 @@ PCBlock >> asContext [
 PCBlock >> asContextWithSender: aContext [
 	"Inner private support method for evaluation.  Do not use unless you know what you're doing."
 
+	PCSystem log: 'alguien llamo PCBlock >> asContextWithSender:'.
+	
 	^ (PCMethodContext newForMethod: outerContext method)
 		setSender: aContext
 			receiver: outerContext receiver
@@ -97,6 +99,11 @@ PCBlock >> numCopiedValues [
 { #category : #'as yet unclassified' }
 PCBlock >> outerContext [
 	^ outerContext
+]
+
+{ #category : #'as yet unclassified' }
+PCBlock >> startpc [ 
+	^startpc
 ]
 
 { #category : #'as yet unclassified' }

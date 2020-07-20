@@ -2,7 +2,7 @@ Class {
 	#name : #PCLargePositiveInteger,
 	#superclass : #PCInteger,
 	#type : #bytes,
-	#category : 'Kernel-Numeric'
+	#category : #'Kernel-Numeric'
 }
 
 { #category : #'as yet unclassified' }

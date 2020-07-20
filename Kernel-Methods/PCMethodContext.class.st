@@ -3,6 +3,7 @@ Class {
 	#superclass : #PCContext,
 	#type : #variable,
 	#instVars : [
+		'stackp',
 		'method',
 		'closureOrNil',
 		'receiver'
@@ -13,6 +14,11 @@ Class {
 { #category : #'as yet unclassified' }
 PCMethodContext >> asContext [
 	^ self
+]
+
+{ #category : #'as yet unclassified' }
+PCMethodContext >> closureOrNil [
+	^ closureOrNil
 ]
 
 { #category : #'as yet unclassified' }
@@ -44,6 +50,11 @@ PCMethodContext >> privRefresh [
 ]
 
 { #category : #'as yet unclassified' }
+PCMethodContext >> receiver [ 
+	^ receiver
+]
+
+{ #category : #'as yet unclassified' }
 PCMethodContext >> removeSelf [
 	"Nil the receiver pointer and answer its former value."
 
@@ -54,9 +65,14 @@ PCMethodContext >> removeSelf [
 ]
 
 { #category : #'as yet unclassified' }
+PCMethodContext >> sender [ 
+	^ sender
+]
+
+{ #category : #'as yet unclassified' }
 PCMethodContext >> setSender: s receiver: r method: m closure: c startpc: startpc [
 	"Create the receiver's initial state."
-
+PCSystem log: 'alguien llamo a setSender:receiver....'.
 	sender := s.
 	receiver := r.
 	method := m.
@@ -87,5 +103,6 @@ PCMethodContext >> tempAt: index put: value [
 	 the VM in context management."
 
 	<primitive: 211>
+	^self at: index put: value
 	
 ]

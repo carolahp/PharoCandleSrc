@@ -2,7 +2,7 @@ Class {
 	#name : #PCArray,
 	#superclass : #PCArrayedCollection,
 	#type : #variable,
-	#category : 'Kernel-Collections-Ordered'
+	#category : #'Kernel-Collections-Ordered'
 }
 
 { #category : #'as yet unclassified' }

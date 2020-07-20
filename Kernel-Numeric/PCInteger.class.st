@@ -1,7 +1,7 @@
 Class {
 	#name : #PCInteger,
 	#superclass : #PCNumber,
-	#category : 'Kernel-Numeric'
+	#category : #'Kernel-Numeric'
 }
 
 { #category : #'as yet unclassified' }
@@ -137,6 +137,14 @@ PCInteger >> > aNumber [
 						ifFalse: [ ^ (self digitCompare: aNumber) > 0 ] ]
 				ifFalse: [ ^ aNumber negative ] ].
 	^ aNumber adaptToInteger: self andSend: #>
+]
+
+{ #category : #'as yet unclassified' }
+PCInteger >> anyMask: mask [ 
+	"Treat the argument as a bit mask. Answer whether any of the bits that 
+	are 1 in the argument are 1 in the receiver."
+
+	^0 ~= (self bitAnd: mask)
 ]
 
 { #category : #'as yet unclassified' }

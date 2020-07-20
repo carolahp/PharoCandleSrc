@@ -4,7 +4,7 @@ Class {
 	#classVars : [
 		'SpecialObjectsArray'
 	],
-	#category : 'Kernel-System'
+	#category : #'Kernel-System'
 }
 
 { #category : #'as yet unclassified' }
@@ -121,6 +121,11 @@ PCSystem class >> log: aString [
 ]
 
 { #category : #'as yet unclassified' }
+PCSystem class >> logSender [
+	self append: thisContext sender receiver asString toFile: 'log1.txt'
+]
+
+{ #category : #'as yet unclassified' }
 PCSystem class >> milliseconds [
 	"Answer the current value of the millisecond clock. Optional primitive."
 
@@ -189,9 +194,10 @@ PCSystem class >> specialObjectsArray: anArray [
 
 { #category : #'as yet unclassified' }
 PCSystem class >> start [
-	self log: 'Welcome to Pharo Candle edition!' .
-	self log: self tinyBenchmarks.
-	self snapshotAndQuit
+	self log: 'sender:', thisContext sender receiver asString.
+	self log: 'hola'.
+	self logSender.
+	self quit
 ]
 
 { #category : #'as yet unclassified' }

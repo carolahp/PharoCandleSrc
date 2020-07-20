@@ -6,7 +6,7 @@ Class {
 		'methodDict',
 		'format'
 	],
-	#category : 'Kernel-Classes'
+	#category : #'Kernel-Classes'
 }
 
 { #category : #'as yet unclassified' }

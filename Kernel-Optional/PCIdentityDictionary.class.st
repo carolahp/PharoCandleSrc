@@ -1,7 +1,7 @@
 Class {
 	#name : #PCIdentityDictionary,
 	#superclass : #PCDictionary,
-	#category : 'Kernel-Optional'
+	#category : #'Kernel-Optional'
 }
 
 { #category : #'as yet unclassified' }

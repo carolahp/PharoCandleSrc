@@ -1,11 +1,9 @@
 Class {
 	#name : #PCContext,
 	#superclass : #PCObject,
-	#type : #variable,
 	#instVars : [
 		'sender',
-		'pc',
-		'stackp'
+		'pc'
 	],
 	#category : #'Kernel-Methods'
 }
@@ -31,11 +29,4 @@ PCContext >> blockCopy: numArgs [
 { #category : #'as yet unclassified' }
 PCContext >> isContextPart [
 	^ true
-]
-
-{ #category : #'as yet unclassified' }
-PCContext >> sender [
-	"Answer the context that sent the message that created the receiver."
-
-	^ sender
 ]

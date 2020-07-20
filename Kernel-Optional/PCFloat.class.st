@@ -20,7 +20,7 @@ Class {
 		'Sqrt2',
 		'Twopi'
 	],
-	#category : 'Kernel-Optional'
+	#category : #'Kernel-Optional'
 }
 
 { #category : #'as yet unclassified' }

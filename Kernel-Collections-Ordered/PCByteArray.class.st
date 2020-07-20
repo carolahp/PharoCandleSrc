@@ -2,7 +2,7 @@ Class {
 	#name : #PCByteArray,
 	#superclass : #PCArrayedCollection,
 	#type : #bytes,
-	#category : 'Kernel-Collections-Ordered'
+	#category : #'Kernel-Collections-Ordered'
 }
 
 { #category : #'as yet unclassified' }

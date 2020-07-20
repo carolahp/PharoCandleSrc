@@ -1,7 +1,7 @@
 Class {
 	#name : #PCNumber,
 	#superclass : #PCMagnitude,
-	#category : 'Kernel-Numeric'
+	#category : #'Kernel-Numeric'
 }
 
 { #category : #'as yet unclassified' }
