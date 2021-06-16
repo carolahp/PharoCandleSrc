@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'excessSignals'
 	],
-	#category : 'Kernel-Optional'
+	#category : #'Kernel-Optional'
 }
 
 { #category : #'as yet unclassified' }

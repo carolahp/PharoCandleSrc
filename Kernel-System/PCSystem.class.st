@@ -4,7 +4,7 @@ Class {
 	#classVars : [
 		'SpecialObjectsArray'
 	],
-	#category : 'Kernel-System'
+	#category : #'Kernel-System'
 }
 
 { #category : #'as yet unclassified' }
@@ -117,7 +117,7 @@ PCSystem class >> incrementalGarbageCollect [
 
 { #category : #'as yet unclassified' }
 PCSystem class >> log: aString [
-	self append: aString toFile: 'log1.txt'
+	self append: aString toFile: PCFile imageName asString, '.txt'
 ]
 
 { #category : #'as yet unclassified' }
@@ -189,9 +189,24 @@ PCSystem class >> specialObjectsArray: anArray [
 
 { #category : #'as yet unclassified' }
 PCSystem class >> start [
-	self log: 'Welcome to Pharo Candle edition!' .
-	self log: self tinyBenchmarks.
-	self snapshotAndQuit
+	| point |
+	thisContext sender asString.
+	self log: 'Welcome to Pharo Candle accessing contexts!'.
+	self log: 'from System >> start'.
+	PCSystem log: '   thisContext sender : ',thisContext sender asString.
+	PCSystem log: '   thisContext sender class : ',thisContext sender class asString.
+	PCSystem log: '   thisContext closureOrNil : ',thisContext closureOrNil asString.
+	PCSystem log: '   thisContext closureOrNil class : ',thisContext closureOrNil class asString.
+	PCSystem log: '   thisContext receiver : ',thisContext receiver asString.
+	PCSystem log: '   thisContext receiver class : ',thisContext receiver class asString.
+	PCSystem log: '   thisContext method class : ',thisContext method class asString.
+	PCSystem log: '   thisContext method : ',thisContext method asString.
+	
+	point := PCPoint new.
+	point metodosinparametro.
+	point metodoconparametro:1.
+	
+	self quit
 ]
 
 { #category : #'as yet unclassified' }

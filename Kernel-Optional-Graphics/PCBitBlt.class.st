@@ -18,7 +18,7 @@ Class {
 		'clipHeight',
 		'colorMap'
 	],
-	#category : 'Kernel-Optional-Graphics'
+	#category : #'Kernel-Optional-Graphics'
 }
 
 { #category : #'as yet unclassified' }

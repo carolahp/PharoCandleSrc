@@ -8,7 +8,7 @@ Class {
 		'classVariablesNames',
 		'formats'
 	],
-	#category : 'Kernel-Classes'
+	#category : #'Kernel-Classes'
 }
 
 { #category : #'as yet unclassified' }

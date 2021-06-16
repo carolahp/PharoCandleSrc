@@ -1,7 +1,7 @@
 Class {
 	#name : #PCCollection,
 	#superclass : #PCObject,
-	#category : 'Kernel-Collections-Abstract'
+	#category : #'Kernel-Collections-Abstract'
 }
 
 { #category : #'as yet unclassified' }
@@ -133,6 +133,16 @@ PCCollection >> includes: anObject [
 			anObject = each
 				ifTrue: [ ^ true ] ].
 	^ false
+]
+
+{ #category : #'as yet unclassified' }
+PCCollection >> inject: thisValue into: binaryBlock [ 
+	"Accumulate a running value associated with evaluating the argument, binaryBlock, with the current value of the argument, thisValue, and the receiver as block arguments."
+	
+	| nextValue |
+	nextValue := thisValue.
+	self do: [:each | nextValue := binaryBlock value: nextValue value: each].
+	^nextValue
 ]
 
 { #category : #'as yet unclassified' }

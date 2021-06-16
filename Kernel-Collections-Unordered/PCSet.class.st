@@ -5,7 +5,7 @@ Class {
 		'tally',
 		'array'
 	],
-	#category : 'Kernel-Collections-Unordered'
+	#category : #'Kernel-Collections-Unordered'
 }
 
 { #category : #'as yet unclassified' }

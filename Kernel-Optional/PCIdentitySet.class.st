@@ -1,7 +1,7 @@
 Class {
 	#name : #PCIdentitySet,
 	#superclass : #PCSet,
-	#category : 'Kernel-Optional'
+	#category : #'Kernel-Optional'
 }
 
 { #category : #'as yet unclassified' }

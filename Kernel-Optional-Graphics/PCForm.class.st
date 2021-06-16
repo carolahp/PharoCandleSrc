@@ -8,7 +8,7 @@ Class {
 		'depth',
 		'bitBlt'
 	],
-	#category : 'Kernel-Optional-Graphics'
+	#category : #'Kernel-Optional-Graphics'
 }
 
 { #category : #'as yet unclassified' }

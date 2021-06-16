@@ -5,8 +5,25 @@ Class {
 		'x',
 		'y'
 	],
-	#category : 'Kernel-Optional'
+	#category : #'Kernel-Optional'
 }
+
+{ #category : #'as yet unclassified' }
+PCPoint class >> new [
+ 	"PCSystem log: 'from PCPoint new'. 
+	PCSystem log: '   thisContext hola : ',thisContext hola.
+	PCSystem log: '   thisContext sender : ',thisContext sender asString.
+	PCSystem log: '   thisContext sender class : ',thisContext sender class asString.
+	PCSystem log: '   thisContext closureOrNil : ',thisContext closureOrNil asString.
+	PCSystem log: '   thisContext closureOrNil class : ',thisContext closureOrNil class asString.
+	PCSystem log: '   thisContext receiver : ',thisContext receiver asString.
+	PCSystem log: '   thisContext receiver class : ',thisContext receiver class asString.
+	PCSystem log: '   thisContext method : ',thisContext method asString.
+	PCSystem log: '   thisContext method class : ',thisContext method class asString.
+	"
+	
+	^ super new
+]
 
 { #category : #'as yet unclassified' }
 PCPoint class >> r: rho degrees: theta [
@@ -157,6 +174,38 @@ PCPoint >> max: aPoint [
 ]
 
 { #category : #'as yet unclassified' }
+PCPoint >> metodoconparametro: anArgument [
+	
+ 	PCSystem log: 'from PCPoint >> metodoconparametro:'. 
+	PCSystem log: '   thisContext sender : ',thisContext sender asString.
+	PCSystem log: '   thisContext sender class : ',thisContext sender class asString.
+	PCSystem log: '   thisContext closureOrNil : ',thisContext closureOrNil asString.
+	PCSystem log: '   thisContext closureOrNil class : ',thisContext closureOrNil class asString.
+	PCSystem log: '   thisContext receiver : ',thisContext receiver asString.
+	PCSystem log: '   thisContext receiver class : ',thisContext receiver class asString.
+	PCSystem log: '   thisContext method : ',thisContext method asString.
+	PCSystem log: '   thisContext method class : ',thisContext method class asString.
+	
+	^ 43
+]
+
+{ #category : #'as yet unclassified' }
+PCPoint >> metodosinparametro [
+	
+ 	PCSystem log: 'from PCPoint >> metodosinparametro'. 
+	PCSystem log: '   thisContext sender : ',thisContext sender asString.
+	PCSystem log: '   thisContext sender class : ',thisContext sender class asString.
+	PCSystem log: '   thisContext closureOrNil : ',thisContext closureOrNil asString.
+	PCSystem log: '   thisContext closureOrNil class : ',thisContext closureOrNil class asString.
+	PCSystem log: '   thisContext receiver : ',thisContext receiver asString.
+	PCSystem log: '   thisContext receiver class : ',thisContext receiver class asString.
+	PCSystem log: '   thisContext method : ',thisContext method asString.
+	PCSystem log: '   thisContext method class : ',thisContext method class asString.
+	
+	^ 42
+]
+
+{ #category : #'as yet unclassified' }
 PCPoint >> min: aPoint [
 	"Answer a new Point whose x and y are the minimum of the receiver's and the argument point's x and y."
 
@@ -205,6 +254,7 @@ PCPoint >> setR: rho degrees: theta [
 
 { #category : #'as yet unclassified' }
 PCPoint >> setX: xValue setY: yValue [
+	
 	x := xValue.
 	y := yValue
 ]

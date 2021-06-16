@@ -1,7 +1,8 @@
 Class {
 	#name : #PCCharacter,
 	#superclass : #PCMagnitude,
-	#category : 'Kernel-Numeric'
+	#type : #immediate,
+	#category : #'Kernel-Numeric'
 }
 
 { #category : #'as yet unclassified' }
