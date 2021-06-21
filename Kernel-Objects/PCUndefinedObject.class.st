@@ -1,6 +1,7 @@
 Class {
 	#name : #PCUndefinedObject,
 	#superclass : #PCObject,
+	#type : #empty,
 	#category : #'Kernel-Objects'
 }
 
