@@ -1,6 +1,7 @@
 Class {
 	#name : #PCSymbol,
 	#superclass : #PCString,
+	#role: #ByteSymbol,
 	#type : #bytes,
 	#category : #'Kernel-Collections-Ordered'
 }
