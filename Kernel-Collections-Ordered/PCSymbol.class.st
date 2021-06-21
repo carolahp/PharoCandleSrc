@@ -89,3 +89,8 @@ PCSymbol >> replaceFrom: start to: stop with: replacement startingAt: repStart [
 PCSymbol >> species [
 	^ PCString
 ]
+
+{ #category : #'as yet unclassified' }
+PCSymbol >> isSymbol [
+	^ true
+]

@@ -135,3 +135,28 @@ PCCompiledMethod >> primitive [
 		ifTrue: [(self at: (initialPC := self initialPC) + 1) + ((self at: initialPC + 2) bitShift: 8)]
 		ifFalse: [0]
 ]
+
+{ #category : #'as yet unclassified' }
+PCCompiledMethod >> methodClass [
+
+	^self classBinding value
+]
+
+{ #category : #'as yet unclassified' }
+PCCompiledMethod >> classBinding [
+
+	^self literalAt: self numLiterals
+]
+
+{ #category : #'as yet unclassified' }
+PCCompiledMethod >> selector [
+	"Answer a method's selector.  This is either the penultimate literal,
+	 or, if the method has any properties or pragmas, the selector of
+	 the MethodProperties stored in the penultimate literal."
+	| penultimateLiteral | 
+	penultimateLiteral := self penultimateLiteral.
+	penultimateLiteral isNil ifTrue: [^nil].
+	^ penultimateLiteral isSymbol
+		ifTrue: [penultimateLiteral]
+		ifFalse: [penultimateLiteral instVarAt: 2]
+]
