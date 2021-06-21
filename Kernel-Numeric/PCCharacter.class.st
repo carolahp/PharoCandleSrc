@@ -1,6 +1,7 @@
 Class {
 	#name : #PCCharacter,
 	#superclass : #PCMagnitude,
+	#type : #immediate,
 	#category : #'Kernel-Numeric'
 }
 

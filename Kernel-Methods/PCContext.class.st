@@ -5,6 +5,7 @@ Class {
 		'sender',
 		'pc'
 	],
+	#type : #variable,
 	#category : #'Kernel-Methods'
 }
 

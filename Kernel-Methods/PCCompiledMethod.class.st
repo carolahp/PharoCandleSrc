@@ -1,7 +1,7 @@
 Class {
 	#name : #PCCompiledMethod,
 	#superclass : #PCByteArray,
-	#type : #bytes,
+	#type : #compiledMethod,
 	#category : #'Kernel-Methods'
 }
 

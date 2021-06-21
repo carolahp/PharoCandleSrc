@@ -6,6 +6,7 @@ Class {
 		'startpc',
 		'nargs'
 	],
+	#type : #variable,
 	#category : #'Kernel-Methods'
 }
 
@@ -140,4 +141,24 @@ PCBlock >> valueWithArguments: anArray [
 				error: 'Attempt to evaluate a block that is already being evaluated.' ]
 		ifFalse: [ self
 				error: 'This block requires ' , nargs printString , ' arguments.' ]
+]
+
+{ #category : #'as yet unclassified' }
+PCBlock >> whileTrue: aBlock [
+	"Ordinarily compiled in-line, and therefore not overridable.
+	This is in case the message is sent to other than a literal block.
+	Evaluate the argument, aBlock, as long as the value of the receiver is true."
+
+	self value ifTrue: [ aBlock value. self whileTrue: aBlock ].
+	^ nil
+]
+
+{ #category : #'as yet unclassified' }
+PCBlock >> whileFalse: aBlock [
+	"Ordinarily compiled in-line, and therefore not overridable.
+	This is in case the message is sent to other than a literal block.
+	Evaluate the argument, aBlock, as long as the value of the receiver is false."
+
+	self value ifFalse: [ aBlock value. self whileFalse: aBlock ].
+	^ nil
 ]

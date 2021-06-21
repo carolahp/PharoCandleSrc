@@ -117,7 +117,7 @@ PCSystem class >> incrementalGarbageCollect [
 
 { #category : #'as yet unclassified' }
 PCSystem class >> log: aString [
-	self append: aString toFile: 'log1.txt'
+	self append: aString toFile: PCFile imageName asString, '.txt'
 ]
 
 { #category : #'as yet unclassified' }
@@ -194,9 +194,7 @@ PCSystem class >> specialObjectsArray: anArray [
 
 { #category : #'as yet unclassified' }
 PCSystem class >> start [
-	self log: 'sender:', thisContext sender receiver asString.
-	self log: 'hola'.
-	self logSender.
+
 	self quit
 ]
 

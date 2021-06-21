@@ -3,8 +3,8 @@ Class {
 	#superclass : #PCBehavior,
 	#instVars : [
 		'name',
-		'instVarNames',
-		'classVariables'
+		'instVarsNames',
+		'classVars'
 	],
 	#category : #'Kernel-Classes'
 }
@@ -18,14 +18,14 @@ PCClass >> classSide [
 PCClass >> classVariables [
 	"Answer the dictionary of class variables that I share with my sole instance, or nil if I have none."
 
-	^ classVariables
+	^ classVars
 ]
 
 { #category : #'as yet unclassified' }
 PCClass >> classVariables: aDictionary [
 	"Answer the dictionary of class variables that I share with my sole instance, or nil if I have none."
 
-	^ classVariables := aDictionary
+	^ classVars := aDictionary
 ]
 
 { #category : #'as yet unclassified' }
@@ -47,25 +47,25 @@ PCClass >> initFrom: aPharoClass methodDict: newMethodDict [
 	format := aPharoClass format.
 	name := (aPharoClass name copyFrom: 2 to: aPharoClass name size)
 		asSymbol.	"omit leading M"
-	instVarNames := aPharoClass instVarNames.
-	classVariables := aPharoClass classPool.
-	instVarNames size = 0
-		ifTrue: [ instVarNames := nil ].
-	classVariables size = 0
-		ifTrue: [ classVariables := nil ]
+	instVarsNames := aPharoClass instVarNames.
+	classVars := aPharoClass classPool.
+	instVarsNames size = 0
+		ifTrue: [ instVarsNames := nil ].
+	classVars size = 0
+		ifTrue: [ classVars := nil ]
 ]
 
 { #category : #'as yet unclassified' }
 PCClass >> instVarNames [
 	"Answer an Array of the receiver's instance variable names."
 
-	instVarNames ifNil: [ ^ #() ].
-	^ instVarNames
+	instVarsNames ifNil: [ ^ #() ].
+	^ instVarsNames
 ]
 
 { #category : #'as yet unclassified' }
 PCClass >> instVarNames: anArray [
-	instVarNames := anArray
+	instVarsNames := anArray
 ]
 
 { #category : #'as yet unclassified' }
@@ -88,7 +88,7 @@ PCClass >> newClassBuilderForSubclass: subclassName instanceVariableNames: instV
 	^ PCClassBuilder new
 		superclass: self;
 		name: subclassName;
-		instVarNames: instVarNames;
+		instVarNames: instVarsNames;
 		classVariableNames: classVarNames;
 		yourself
 ]
