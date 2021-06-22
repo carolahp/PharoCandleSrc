@@ -293,3 +293,39 @@ PCOrderedCollection >> setCollection: anArray [
 PCOrderedCollection >> size [
 	^ lastIndex - firstIndex + 1
 ]
+PCOrderedCollection class >> newFrom: aCollection [
+
+	"Answer an instance of me containing the same elements as aCollection."
+
+	| newCollection |
+	newCollection := self new: aCollection size.
+	newCollection addAll: aCollection.
+	^newCollection
+]
+
+PCOrderedCollection >> addFirst: newObject [
+	"Add newObject to the beginning of the receiver. Answer newObject."
+
+	firstIndex = 1
+		ifTrue: [ self makeRoomAtFirst ].
+	firstIndex := firstIndex - 1.
+	array at: firstIndex put: newObject.
+	^ newObject
+]
+
+PCOrderedCollection >> addLast: newObject [ 
+	"Add newObject to the end of the receiver. Answer newObject."
+
+	lastIndex = array size ifTrue: [self makeRoomAtLast].
+	lastIndex := lastIndex + 1.
+	array at: lastIndex put: newObject.
+	^ newObject
+]
+
+PCOrderedCollection >> addAll: aCollection [ 
+	"Add each element of aCollection at the end of the receiver. 
+	Answer aCollection."
+
+	aCollection do: [:each | self addLast: each].
+	^aCollection
+]

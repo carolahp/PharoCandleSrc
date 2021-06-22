@@ -116,3 +116,22 @@ PCMethodContext >> printOn: aStream [
 		nextPutAll: ' >>> ';
 		nextPutAll: self method selector asString
 ]
+
+{ #category : #'as yet unclassified' }
+PCMethodContext >> stringCallStack [
+
+	| stream |
+	stream := PCWriteStream on: (PCString new: 100).
+	self callStack do: [:contx | 
+		stream 
+			nextPutAll: contx asString;
+			nextPutAll: PCCharacter cr asString ].
+	^ stream contents
+]
+
+{ #category : #'as yet unclassified' }
+PCMethodContext >> callStack [
+	^ self sender isNil 
+		ifTrue:  [{ self } asOrderedCollection]
+		ifFalse: [{ self } asOrderedCollection addAll: self sender callStack; yourself ]
+]

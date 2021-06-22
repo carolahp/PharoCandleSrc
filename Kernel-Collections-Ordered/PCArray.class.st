@@ -59,3 +59,9 @@ PCArray >> replaceFrom: start to: stop with: replacement startingAt: repStart [
 		with: replacement
 		startingAt: repStart
 ]
+
+{ #category : #'as yet unclassified' }
+PCArray >> asOrderedCollection [
+
+	^ PCOrderedCollection newFrom: self
+]

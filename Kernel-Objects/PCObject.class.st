@@ -207,6 +207,11 @@ PCObject >> error: aString [
 	"PCPbject new error: 'test error'"
 
 	| handler |
+	
+	PCSystem log: 'Error: ', aString asString.
+	PCSystem log: PCCharacter cr asString, 'CallStack:'.
+	PCSystem log: thisContext stringCallStack asString.
+	PCSystem snapshotAndQuit.
 	(handler := Processor activeProcess errorHandler)
 		ifNil: [ self handleExceptionName: aString context: thisContext ]
 		ifNotNil: [ handler value: aString value: self ]
@@ -615,8 +620,9 @@ PCObject >> ~~ anObject [
 
 { #category : #'as yet unclassified' }
 PCObject >> instVarAtProtected: index [
-	
-	self owner = thisContext sender receiver
+	| receiver |
+	receiver := thisContext sender receiver.
+	(receiver = self or: receiver = self owner) 
 		ifTrue: [ ^ self instVarAt: index].
 	self error: 'Unauthorized reflective message send'
 ]
