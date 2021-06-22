@@ -22,7 +22,9 @@ PCPoint class >> new [
 	PCSystem log: '   thisContext method class : ',thisContext method class asString.
 	"
 	
-	^ super new
+	^ super new 
+		owner: thisContext sender receiver; 
+		yourself 
 ]
 
 { #category : #'as yet unclassified' }

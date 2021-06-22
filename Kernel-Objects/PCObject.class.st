@@ -612,3 +612,11 @@ PCObject >> ~~ anObject [
 		ifTrue: [ false ]
 		ifFalse: [ true ]
 ]
+
+{ #category : #'as yet unclassified' }
+PCObject >> instVarAtProtected: index [
+	
+	self owner = thisContext sender receiver
+		ifTrue: [ ^ self instVarAt: index].
+	self error: 'Unauthorized reflective message send'
+]
