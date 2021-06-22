@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'name',
 		'instVarsNames',
-		'classVars'
+		'classVars',
+		'instancesDict'
 	],
 	#classVars : [ ],
 	#category : #'Kernel-Classes'
