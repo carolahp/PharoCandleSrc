@@ -1,10 +1,12 @@
 Class {
 	#name : #PCPoint,
 	#superclass : #PCObject,
+	#role : 'Point',
 	#instVars : [
 		'x',
 		'y'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Optional'
 }
 

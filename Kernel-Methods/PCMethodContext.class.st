@@ -1,6 +1,7 @@
 Class {
 	#name : #PCMethodContext,
 	#superclass : #PCContext,
+	#role : 'Context',
 	#type : #variable,
 	#instVars : [
 		'stackp',
@@ -8,12 +9,20 @@ Class {
 		'closureOrNil',
 		'receiver'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Methods'
 }
 
 { #category : #'as yet unclassified' }
 PCMethodContext >> asContext [
 	^ self
+]
+
+{ #category : #'as yet unclassified' }
+PCMethodContext >> callStack [
+	^ self sender isNil 
+		ifTrue:  [{ self } asOrderedCollection]
+		ifFalse: [{ self } asOrderedCollection addAll: self sender callStack; yourself ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -33,6 +42,16 @@ PCMethodContext >> home [
 { #category : #'as yet unclassified' }
 PCMethodContext >> method [
 	^ method
+]
+
+{ #category : #'as yet unclassified' }
+PCMethodContext >> printOn: aStream [
+	aStream
+		nextPutAll:  '*', receiver asString, '* ';
+		nextPutAll: receiver class asString;
+		nextPutAll: '(', self method methodClass asString, ')';
+		nextPutAll: ' >>> ';
+		nextPutAll: self method selector asString
 ]
 
 { #category : #'as yet unclassified' }
@@ -94,30 +113,6 @@ PCMethodContext >> stackp: newStackp [
 ]
 
 { #category : #'as yet unclassified' }
-PCMethodContext >> tempAt: index put: value [
-	"Store the argument, value, as the temporary variable whose index is the 
-	 argument, index.  Primitive. Assumes receiver is indexable. Answer the
-	 value of an indexable element in the receiver. Fail if the argument index
-	 is not an Integer or is out of bounds. Essential. See Object documentation
-	 whatIsAPrimitive.  Override the default at:put: primitive to give latitude to
-	 the VM in context management."
-
-	<primitive: 211>
-	^self at: index put: value
-	
-]
-
-{ #category : #'as yet unclassified' }
-PCMethodContext >> printOn: aStream [
-	aStream
-		nextPutAll:  '*', receiver asString, '* ';
-		nextPutAll: receiver class asString;
-		nextPutAll: '(', self method methodClass asString, ')';
-		nextPutAll: ' >>> ';
-		nextPutAll: self method selector asString
-]
-
-{ #category : #'as yet unclassified' }
 PCMethodContext >> stringCallStack [
 
 	| stream |
@@ -130,8 +125,15 @@ PCMethodContext >> stringCallStack [
 ]
 
 { #category : #'as yet unclassified' }
-PCMethodContext >> callStack [
-	^ self sender isNil 
-		ifTrue:  [{ self } asOrderedCollection]
-		ifFalse: [{ self } asOrderedCollection addAll: self sender callStack; yourself ]
+PCMethodContext >> tempAt: index put: value [
+	"Store the argument, value, as the temporary variable whose index is the 
+	 argument, index.  Primitive. Assumes receiver is indexable. Answer the
+	 value of an indexable element in the receiver. Fail if the argument index
+	 is not an Integer or is out of bounds. Essential. See Object documentation
+	 whatIsAPrimitive.  Override the default at:put: primitive to give latitude to
+	 the VM in context management."
+
+	<primitive: 211>
+	^self at: index put: value
+	
 ]

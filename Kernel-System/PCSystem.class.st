@@ -2,7 +2,7 @@ Class {
 	#name : #PCSystem,
 	#superclass : #PCObject,
 	#classVars : [
-		'SpecialObjectsArray'
+		#SpecialObjectsArray
 	],
 	#category : #'Kernel-System'
 }

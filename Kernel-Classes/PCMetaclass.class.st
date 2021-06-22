@@ -1,9 +1,11 @@
 Class {
 	#name : #PCMetaclass,
 	#superclass : #PCBehavior,
+	#role : 'Metaclass',
 	#instVars : [
 		'soleInstance'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Classes'
 }
 

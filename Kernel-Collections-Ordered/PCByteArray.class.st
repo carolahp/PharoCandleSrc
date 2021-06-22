@@ -1,7 +1,9 @@
 Class {
 	#name : #PCByteArray,
 	#superclass : #PCArrayedCollection,
+	#role : 'ByteArray',
 	#type : #bytes,
+	#classVars : [ ],
 	#category : #'Kernel-Collections-Ordered'
 }
 

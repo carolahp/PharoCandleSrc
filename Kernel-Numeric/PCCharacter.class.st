@@ -1,7 +1,9 @@
 Class {
 	#name : #PCCharacter,
 	#superclass : #PCMagnitude,
+	#role : 'Character',
 	#type : #immediate,
+	#classVars : [ ],
 	#category : #'Kernel-Numeric'
 }
 

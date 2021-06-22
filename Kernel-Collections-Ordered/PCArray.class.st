@@ -1,7 +1,9 @@
 Class {
 	#name : #PCArray,
 	#superclass : #PCArrayedCollection,
+	#role : 'Array',
 	#type : #variable,
+	#classVars : [ ],
 	#category : #'Kernel-Collections-Ordered'
 }
 
@@ -19,6 +21,12 @@ PCArray >> asDictionary [
 	dictionary := PCDictionary new.
 	self do: [ :each | dictionary add: each ].
 	^ dictionary
+]
+
+{ #category : #'as yet unclassified' }
+PCArray >> asOrderedCollection [
+
+	^ PCOrderedCollection newFrom: self
 ]
 
 { #category : #'as yet unclassified' }
@@ -58,10 +66,4 @@ PCArray >> replaceFrom: start to: stop with: replacement startingAt: repStart [
 		to: stop
 		with: replacement
 		startingAt: repStart
-]
-
-{ #category : #'as yet unclassified' }
-PCArray >> asOrderedCollection [
-
-	^ PCOrderedCollection newFrom: self
 ]

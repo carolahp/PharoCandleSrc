@@ -1,6 +1,7 @@
 Class {
 	#name : #PCInteger,
 	#superclass : #PCNumber,
+	#classVars : [ ],
 	#category : #'Kernel-Numeric'
 }
 

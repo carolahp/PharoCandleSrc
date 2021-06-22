@@ -1,12 +1,13 @@
 Class {
 	#name : #PCString,
 	#superclass : #PCArrayedCollection,
+	#role : 'ByteString',
 	#type : #bytes,
 	#classVars : [
-		'AsciiOrder',
-		'CaseInsensitiveOrder',
-		'CaseSensitiveOrder',
-		'LowercasingTable'
+		#CaseSensitiveOrder,
+		#AsciiOrder,
+		#LowercasingTable,
+		#CaseInsensitiveOrder
 	],
 	#category : #'Kernel-Collections-Ordered'
 }

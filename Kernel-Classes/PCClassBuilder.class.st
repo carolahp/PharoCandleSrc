@@ -8,6 +8,7 @@ Class {
 		'classVariablesNames',
 		'formats'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Classes'
 }
 

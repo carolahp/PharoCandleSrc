@@ -6,11 +6,13 @@ Class {
 		'methodDict',
 		'format'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Classes'
 }
 
 { #category : #'as yet unclassified' }
 PCBehavior >> >> aSelector [
+	"a comment"
 	^ self methodDict at: aSelector
 ]
 

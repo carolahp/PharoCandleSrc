@@ -1,7 +1,8 @@
 Class {
 	#name : #PCUndefinedObject,
 	#superclass : #PCObject,
-	#type : #empty,
+	#role : 'UndefinedObject',
+	#classVars : [ ],
 	#category : #'Kernel-Objects'
 }
 
@@ -17,6 +18,23 @@ PCUndefinedObject >> basicCopy [
 	"There is the only one instance of me, so answer myself."
 
 	^ self
+]
+
+{ #category : #'as yet unclassified' }
+PCUndefinedObject >> entryPoint [
+
+| p |
+PCSystem log: 'this context ',thisContext asString.
+PCSystem log:  'this context receiver',thisContext receiver asString.
+PCSystem log:  'this context sender',thisContext sender asString.
+PCSystem log:  'this context sender receiver',thisContext sender receiver asString.
+
+p := PCPoint new.
+p setX: 45 setY:39.
+PCSystem log: 'holaa owner'. 
+PCSystem log: 'p owner is ',  p owner asString.
+PCSystem log: 'p inst var at 1 is ', (p instVarAtProtected: 1) asString. 
+PCSystem quit.
 ]
 
 { #category : #'as yet unclassified' }

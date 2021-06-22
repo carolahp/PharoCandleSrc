@@ -1,11 +1,13 @@
 Class {
 	#name : #PCMessage,
 	#superclass : #PCObject,
+	#role : 'Message',
 	#instVars : [
 		'selector',
 		'arguments',
 		'lookupClass'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Methods'
 }
 

@@ -1,7 +1,9 @@
 Class {
 	#name : #PCCompiledMethod,
 	#superclass : #PCByteArray,
+	#role : 'CompiledMethod',
 	#type : #compiledMethod,
+	#classVars : [ ],
 	#category : #'Kernel-Methods'
 }
 
@@ -22,6 +24,12 @@ PCCompiledMethod >> asString [
 			', literals: (', literalsString ,
 			'), numArgs: ', self numArgs asString,
 			', numTemps: ', self numTemps asString
+]
+
+{ #category : #'as yet unclassified' }
+PCCompiledMethod >> classBinding [
+
+	^self literalAt: self numLiterals
 ]
 
 { #category : #'as yet unclassified' }
@@ -70,6 +78,12 @@ PCCompiledMethod >> literals [
 	1 to: numberLiterals do: [:index |
 		literals at: index put: (self objectAt: index + 1)].
 	^literals
+]
+
+{ #category : #'as yet unclassified' }
+PCCompiledMethod >> methodClass [
+
+	^self classBinding value
 ]
 
 { #category : #'as yet unclassified' }
@@ -134,18 +148,6 @@ PCCompiledMethod >> primitive [
 	^(self header anyMask: 65536) "Is the hasPrimitive? flag set?"
 		ifTrue: [(self at: (initialPC := self initialPC) + 1) + ((self at: initialPC + 2) bitShift: 8)]
 		ifFalse: [0]
-]
-
-{ #category : #'as yet unclassified' }
-PCCompiledMethod >> methodClass [
-
-	^self classBinding value
-]
-
-{ #category : #'as yet unclassified' }
-PCCompiledMethod >> classBinding [
-
-	^self literalAt: self numLiterals
 ]
 
 { #category : #'as yet unclassified' }

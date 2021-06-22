@@ -1,6 +1,7 @@
 Class {
 	#name : #PCCollection,
 	#superclass : #PCObject,
+	#classVars : [ ],
 	#category : #'Kernel-Collections-Abstract'
 }
 

@@ -1,7 +1,8 @@
 Class {
 	#name : #PCObject,
 	#superclass : #nil,
-	#type : #empty,
+	#role : 'ProtoObject',
+	#classVars : [ ],
 	#category : #'Kernel-Objects'
 }
 
@@ -334,6 +335,15 @@ PCObject >> instVarAt: index put: anObject [
 ]
 
 { #category : #'as yet unclassified' }
+PCObject >> instVarAtProtected: index [
+	| receiver |
+	receiver := thisContext sender receiver.
+	(receiver = self or: [receiver = self owner]) 
+		ifTrue: [ ^ self instVarAt: index].
+	self error: 'Unauthorized reflective message send'
+]
+
+{ #category : #'as yet unclassified' }
 PCObject >> isBehavior [
 	"Answer true if I am a subclass of Behavior."
 
@@ -616,13 +626,4 @@ PCObject >> ~~ anObject [
 	^ self == anObject
 		ifTrue: [ false ]
 		ifFalse: [ true ]
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> instVarAtProtected: index [
-	| receiver |
-	receiver := thisContext sender receiver.
-	(receiver = self or: receiver = self owner) 
-		ifTrue: [ ^ self instVarAt: index].
-	self error: 'Unauthorized reflective message send'
 ]

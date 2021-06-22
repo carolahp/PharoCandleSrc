@@ -8,6 +8,7 @@ Class {
 		'depth',
 		'bitBlt'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Optional-Graphics'
 }
 
