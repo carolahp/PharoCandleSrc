@@ -219,6 +219,13 @@ PCInteger >> benchmark [
 	^ count
 ]
 
+PCInteger >> benchInstantiate: aClass [
+	1 to: self do: [ :iter | 
+		aClass new
+	]
+]
+
+
 { #category : #'as yet unclassified' }
 PCInteger >> bitAnd: n [
 	"Answer an Integer whose bits are the logical AND of the receiver's bits 
