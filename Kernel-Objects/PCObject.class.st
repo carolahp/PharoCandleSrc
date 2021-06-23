@@ -17,7 +17,10 @@ PCObject class >> cannotInstantiate [
 PCObject class >> new [
 	"Create a new instance of me and initialize it."
 
-	^ self basicNew initialize
+	^ self basicNew
+		owner: thisContext sender receiver;
+		initialize;
+		yourself
 ]
 
 { #category : #'as yet unclassified' }
