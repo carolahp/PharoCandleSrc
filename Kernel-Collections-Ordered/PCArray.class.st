@@ -7,6 +7,7 @@ Class {
 	#category : #'Kernel-Collections-Ordered'
 }
 
+
 { #category : #'as yet unclassified' }
 PCArray >> asArray [
 	"Answer with the receiver itself."
@@ -66,4 +67,10 @@ PCArray >> replaceFrom: start to: stop with: replacement startingAt: repStart [
 		to: stop
 		with: replacement
 		startingAt: repStart
+]
+
+PCArray class >> new: size [
+	^ (super new: size)
+		owner: thisContext sender receiver;
+		yourself
 ]

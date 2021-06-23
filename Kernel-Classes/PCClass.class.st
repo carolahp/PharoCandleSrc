@@ -17,11 +17,6 @@ PCClass >> classSide [
 ]
 
 { #category : #'as yet unclassified' }
-PCClass >> instancesDict [
-	^ instancesDict
-]
-
-{ #category : #'as yet unclassified' }
 PCClass >> classVariables [
 	"Answer the dictionary of class variables that I share with my sole instance, or nil if I have none."
 
@@ -73,6 +68,11 @@ PCClass >> instVarNames [
 { #category : #'as yet unclassified' }
 PCClass >> instVarNames: anArray [
 	instVarsNames := anArray
+]
+
+{ #category : #'as yet unclassified' }
+PCClass >> instancesDict [
+	^ instancesDict
 ]
 
 { #category : #'as yet unclassified' }

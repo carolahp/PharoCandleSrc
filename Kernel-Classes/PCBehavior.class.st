@@ -50,17 +50,22 @@ PCBehavior >> allInstancesDo: aBlock [
 ]
 
 { #category : #'as yet unclassified' }
-PCBehavior >> basicNew [
+PCBehavior >> privateNew [
 	"Primitive. Answer an instance of the receiver (which is a class) with no indexable fields. Fail if the class is variable-sized. Essential. See Object documentation whatIsAPrimitive."
 
 	<primitive: 70>
 	self isVariable
-		ifTrue: [ ^ self basicNew: 0 ].	"space must be low"
+		ifTrue: [ ^ self privateNew: 0 ].	"space must be low"
 	self error: 'low space'
 ]
 
 { #category : #'as yet unclassified' }
-PCBehavior >> basicNew: desiredSize [
+PCBehavior >> basicNew [
+	^ self privateNew
+]
+
+{ #category : #'as yet unclassified' }
+PCBehavior >> privateNew: desiredSize [
 	"Primitive. Answer an instance of this class with the given number of indexable variables. Fail if this class is not indexable, if the argument is not a positive Integer, or if there is not enough memory available. Essential. See Object documentation whatIsAPrimitive."
 
 	<primitive: 71>
@@ -69,6 +74,11 @@ PCBehavior >> basicNew: desiredSize [
 	(desiredSize isInteger not or: [ desiredSize < 0 ])
 		ifTrue: [ self error: 'bad size' ].
 	self error: 'low space'
+]
+
+{ #category : #'as yet unclassified' }
+PCBehavior >> basicNew: desiredSize [
+	^ self privateNew: desiredSize
 ]
 
 { #category : #'as yet unclassified' }

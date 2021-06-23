@@ -119,8 +119,14 @@ PCObject >> basicAt: index put: value [
 		ifFalse: [ self errorNonIntegerIndex ]
 ]
 
+
 { #category : #'as yet unclassified' }
 PCObject >> basicCopy [
+	^ self privateCopy
+]
+
+{ #category : #'as yet unclassified' }
+PCObject >> privateCopy [
 	"Answer a copy of the receiver that shares the receiver's instance variables. This is usually handled by the primitive, so the code below is for documentation."
 
 	<primitive: 148>
@@ -128,9 +134,9 @@ PCObject >> basicCopy [
 	class := self class.
 	class isVariable
 		ifTrue: [ sz := self basicSize.
-			result := class basicNew: sz.
+			result := class privateNew: sz.
 			1 to: sz do: [ :i | result basicAt: i put: (self basicAt: i) ] ]
-		ifFalse: [ result := class basicNew ].
+		ifFalse: [ result := class privateNew ].
 	1 to: class instSize do: [ :i | result instVarAt: i put: (self instVarAt: i) ].
 	^ result
 ]
@@ -265,7 +271,7 @@ PCObject >> hash [
 PCObject >> identityHash [
 	"Answer a SmallInteger whose value is related to the receiver's identity. This method must not be overridden, except by SmallInteger. Primitive. Fails if the receiver is a SmallInteger. Essential. See Object documentation whatIsAPrimitive. Do not override!"
 
-	^ self basicIdentityHash bitShift: 18
+	^ self basicIdentityHash bitShift: 8
 ]
 
 { #category : #'as yet unclassified' }

@@ -23,17 +23,19 @@ PCUndefinedObject >> basicCopy [
 { #category : #'as yet unclassified' }
 PCUndefinedObject >> entryPoint [
 
-| p |
-PCSystem log: 'this context ',thisContext asString.
-PCSystem log:  'this context receiver',thisContext receiver asString.
-PCSystem log:  'this context sender',thisContext sender asString.
-PCSystem log:  'this context sender receiver',thisContext sender receiver asString.
+| arr |
 
-p := PCPoint new.
-p setX: 45 setY:39.
-PCSystem log: 'holaa owner'. 
-PCSystem log: 'p owner is ',  p owner asString.
-PCSystem log: 'p inst var at 1 is ', (p instVarAtProtected: 1) asString. 
+arr := PCArray new: 3.
+arr at: 1 put: #a.
+arr at: 2 put: #b.
+arr at: 3 put: #c.
+
+PCSystem log: 'InstancesDict end: ', PCArray instancesDict asString.
+
+
+PCSystem log: 'array : ', arr asString.
+PCSystem log: 'array owner: ', arr owner asString.
+
 PCSystem quit.
 ]
 
