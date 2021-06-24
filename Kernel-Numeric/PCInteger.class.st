@@ -194,6 +194,13 @@ PCInteger >> benchFib [
 ]
 
 { #category : #'as yet unclassified' }
+PCInteger >> benchInstantiate: aClass [
+	1 to: self do: [ :iter | 
+		aClass new
+	]
+]
+
+{ #category : #'as yet unclassified' }
 PCInteger >> benchmark [
 	"Handy bytecode-heavy benchmark"
 
@@ -218,13 +225,6 @@ PCInteger >> benchmark [
 					count := count + 1 ] ] ].
 	^ count
 ]
-
-PCInteger >> benchInstantiate: aClass [
-	1 to: self do: [ :iter | 
-		aClass new
-	]
-]
-
 
 { #category : #'as yet unclassified' }
 PCInteger >> bitAnd: n [

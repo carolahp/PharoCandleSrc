@@ -7,7 +7,6 @@ Class {
 	#category : #'Kernel-Collections-Ordered'
 }
 
-
 { #category : #'as yet unclassified' }
 PCArray >> asArray [
 	"Answer with the receiver itself."

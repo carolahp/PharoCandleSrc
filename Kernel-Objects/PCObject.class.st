@@ -122,26 +122,9 @@ PCObject >> basicAt: index put: value [
 		ifFalse: [ self errorNonIntegerIndex ]
 ]
 
-
 { #category : #'as yet unclassified' }
 PCObject >> basicCopy [
 	^ self privateCopy
-]
-
-{ #category : #'as yet unclassified' }
-PCObject >> privateCopy [
-	"Answer a copy of the receiver that shares the receiver's instance variables. This is usually handled by the primitive, so the code below is for documentation."
-
-	<primitive: 148>
-	| class result sz |
-	class := self class.
-	class isVariable
-		ifTrue: [ sz := self basicSize.
-			result := class privateNew: sz.
-			1 to: sz do: [ :i | result basicAt: i put: (self basicAt: i) ] ]
-		ifFalse: [ result := class privateNew ].
-	1 to: class instSize do: [ :i | result instVarAt: i put: (self instVarAt: i) ].
-	^ result
 ]
 
 { #category : #'as yet unclassified' }
@@ -528,6 +511,22 @@ PCObject >> printString [
 	stream := PCWriteStream on: (PCString new: 100).
 	self printOn: stream.
 	^ stream contents
+]
+
+{ #category : #'as yet unclassified' }
+PCObject >> privateCopy [
+	"Answer a copy of the receiver that shares the receiver's instance variables. This is usually handled by the primitive, so the code below is for documentation."
+
+	<primitive: 148>
+	| class result sz |
+	class := self class.
+	class isVariable
+		ifTrue: [ sz := self basicSize.
+			result := class privateNew: sz.
+			1 to: sz do: [ :i | result basicAt: i put: (self basicAt: i) ] ]
+		ifFalse: [ result := class privateNew ].
+	1 to: class instSize do: [ :i | result instVarAt: i put: (self instVarAt: i) ].
+	^ result
 ]
 
 { #category : #'as yet unclassified' }

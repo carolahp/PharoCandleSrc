@@ -76,6 +76,12 @@ PCClass >> instancesDict [
 ]
 
 { #category : #'as yet unclassified' }
+PCClass >> isInstantiable [
+	^ (#(#PCSmallInteger #PCSequenceableCollection #PCCharacter #PCSymbol #PCContext #PCString #PCMetaclass #PCProcessorScheduler #PCTrue #PCFalse #PCUndefinedObject #PCFloat #PCClass #PCMethodContext #PCContext #PCInteger #PCNumber #PCSmallInteger #PCFloat #PCLargePositiveInteger #PCLargeNegativeInteger #PCCollection #PCProcessList #PCSet #PCDictionary #PCBehavior #PCClass #PCCompiledMethod #PCProcess #PCMethodDictionary)
+			includes: self name) not
+]
+
+{ #category : #'as yet unclassified' }
 PCClass >> isMeta [
 	^ false
 ]
@@ -153,9 +159,4 @@ PCClass >> weakSubclass: subclassName instanceVariableNames: someInstVarNames cl
 		classVariableNames: classVarNames)
 		beWeak;
 		build
-]
-
-PCClass >> isInstantiable [
-	^ (#(#PCSmallInteger #PCSequenceableCollection #PCCharacter #PCSymbol #PCContext #PCString #PCMetaclass #PCProcessorScheduler #PCTrue #PCFalse #PCUndefinedObject #PCFloat #PCClass #PCMethodContext #PCContext #PCInteger #PCNumber #PCSmallInteger #PCFloat #PCLargePositiveInteger #PCLargeNegativeInteger #PCCollection #PCProcessList #PCSet #PCDictionary #PCBehavior #PCClass #PCCompiledMethod #PCProcess #PCMethodDictionary)
-			includes: self name) not
 ]

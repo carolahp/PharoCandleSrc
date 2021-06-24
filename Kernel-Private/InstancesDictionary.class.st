@@ -5,6 +5,19 @@ Class {
 	#category : #'Kernel-Private'
 }
 
+{ #category : #'as yet unclassified' }
+InstancesDictionary class >> new: nElements [
+	"Create a Set large enough to hold nElements without growing."
+
+	| initialSize |
+	"make large enough size to hold nElements with some slop (see fullCheck)"
+	nElements <= 0
+		ifTrue: [ initialSize := 1 ]
+		ifFalse: [ initialSize := (nElements + 1) * 4 // 3 ].
+	^ self privateNew init: initialSize
+]
+
+{ #category : #'as yet unclassified' }
 InstancesDictionary >> at: key put: anObject [
 	"Set the value at key to be anObject.  If key is not found, create a new
 	entry for key and set is value to anObject. Answer anObject."
@@ -19,6 +32,7 @@ InstancesDictionary >> at: key put: anObject [
 	^ anObject
 ]
 
+{ #category : #'as yet unclassified' }
 InstancesDictionary >> grow [
 	"Grow the elements array and reinsert the old elements."
 
@@ -32,20 +46,10 @@ InstancesDictionary >> grow [
 				ifFalse: [ self noCheckAdd: each ] ]
 ]
 
+{ #category : #'as yet unclassified' }
 InstancesDictionary >> init: n [
 	"Initialize array to an array size of n."
 
 	array := PCArray privateNew: n.
 	tally := 0
-]
-
-InstancesDictionary class >> new: nElements [
-	"Create a Set large enough to hold nElements without growing."
-
-	| initialSize |
-	"make large enough size to hold nElements with some slop (see fullCheck)"
-	nElements <= 0
-		ifTrue: [ initialSize := 1 ]
-		ifFalse: [ initialSize := (nElements + 1) * 4 // 3 ].
-	^ self privateNew init: initialSize
 ]

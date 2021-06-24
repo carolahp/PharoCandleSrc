@@ -32,6 +32,16 @@ PCSystem class >> append: aString toFile: fileName [
 ]
 
 { #category : #'as yet unclassified' }
+PCSystem class >> benchInstantiate [
+	| n t1 t2 |
+	n := 1000000.
+	t1 := [ n benchInstantiate: PCArray ] msecs.
+	t2 := [ n benchInstantiate: PCPoint] msecs.
+	^ (n // t1) printString , ' instances/sec (', PCArray name ,'); '
+	  , (n // t2) printString , ' instances/sec (', PCPoint name ,')'
+]
+
+{ #category : #'as yet unclassified' }
 PCSystem class >> exitToDebugger [
 	"Tell the VM that we've encountered an unhandled error or halt."
 
@@ -221,6 +231,7 @@ PCSystem class >> testNormalObject [
 	self log: (test instVarAt: 2) asString
 ]
 
+{ #category : #'as yet unclassified' }
 PCSystem class >> tinyBenchmarks [
 	"Report the results of running the two tiny benchmarks."
 
@@ -231,15 +242,3 @@ PCSystem class >> tinyBenchmarks [
 	^ (n * 500000 * 1000 // t1) printString , ' bytecodes/sec; '
 		, (r * 1000 // t2) printString , ' sends/sec'
 ]
-
-
-{ #category : #'as yet unclassified' }
-PCSystem class >> benchInstantiate [
-	| n t1 t2 |
-	n := 1000000.
-	t1 := [ n benchInstantiate: PCArray ] msecs.
-	t2 := [ n benchInstantiate: PCPoint] msecs.
-	^ (n // t1) printString , ' instances/sec (', PCArray name ,'); '
-	  , (n // t2) printString , ' instances/sec (', PCPoint name ,')'
-]
-

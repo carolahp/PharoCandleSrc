@@ -6,7 +6,7 @@ Class {
 	#classVars : [
 		#MinValLogBase2,
 		#Pi,
-		#RadiansPerDegree,
+		#Ln10,
 		#NegativeInfinity,
 		#Ln2,
 		#Halfpi,
@@ -19,7 +19,7 @@ Class {
 		#Sqrt2,
 		#Twopi,
 		#MaxValLn,
-		#Ln10
+		#RadiansPerDegree
 	],
 	#category : #'Kernel-Optional'
 }

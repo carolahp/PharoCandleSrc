@@ -23,19 +23,8 @@ PCUndefinedObject >> basicCopy [
 { #category : #'as yet unclassified' }
 PCUndefinedObject >> entryPoint [
 
-| arr |
-
-arr := PCArray new: 3.
-arr at: 1 put: #a.
-arr at: 2 put: #b.
-arr at: 3 put: #c.
-
-PCSystem log: 'InstancesDict end: ', PCArray instancesDict asString.
-
-
-PCSystem log: 'array : ', arr asString.
-PCSystem log: 'array owner: ', arr owner asString.
-
+PCSystem log: 'Owner'.
+PCSystem log: PCSystem benchInstantiate.
 PCSystem quit.
 ]
 

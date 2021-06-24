@@ -1,6 +1,7 @@
 Class {
 	#name : #PCIdentityDictionary,
 	#superclass : #PCDictionary,
+	#role : 'IdentityDictionary',
 	#classVars : [ ],
 	#category : #'Kernel-Optional'
 }
