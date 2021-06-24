@@ -6,6 +6,7 @@ Class {
 		'firstIndex',
 		'lastIndex'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Collections-Ordered'
 }
 

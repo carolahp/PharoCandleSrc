@@ -1,6 +1,8 @@
 Class {
 	#name : #PCUndefinedObject,
 	#superclass : #PCObject,
+	#role : 'UndefinedObject',
+	#classVars : [ ],
 	#category : #'Kernel-Objects'
 }
 
@@ -16,6 +18,14 @@ PCUndefinedObject >> basicCopy [
 	"There is the only one instance of me, so answer myself."
 
 	^ self
+]
+
+{ #category : #'as yet unclassified' }
+PCUndefinedObject >> entryPoint [
+
+PCSystem log: 'Candle'.
+PCSystem log: PCSystem benchInstantiate.
+PCSystem quit.
 ]
 
 { #category : #'as yet unclassified' }

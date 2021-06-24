@@ -1,6 +1,8 @@
 Class {
 	#name : #PCTrue,
 	#superclass : #PCObject,
+	#role : 'True',
+	#classVars : [ ],
 	#category : #'Kernel-Objects'
 }
 

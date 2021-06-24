@@ -1,11 +1,12 @@
 Class {
 	#name : #PCContext,
 	#superclass : #PCObject,
+	#type : #variable,
 	#instVars : [
 		'sender',
 		'pc'
 	],
-	#type : #variable,
+	#classVars : [ ],
 	#category : #'Kernel-Methods'
 }
 

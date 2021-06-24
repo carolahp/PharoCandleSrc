@@ -4,10 +4,11 @@ Class {
 	#instVars : [
 		'globals'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-System'
 }
 
-{ #category : #accessing }
+{ #category : #'as yet unclassified' }
 PCSmalltalk >> globals [ 
 	^ globals
 ]

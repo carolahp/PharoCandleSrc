@@ -5,8 +5,33 @@ Class {
 		'name',
 		'fileID'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Optional'
 }
+
+{ #category : #'as yet unclassified' }
+PCFile class >> imageName [
+	"Answer the name of the image file"
+
+	| imagePath delimiter i |
+	imagePath := self primImageName.
+	delimiter := $/.
+	(imagePath includes: delimiter)
+		ifFalse: [ delimiter := $\ ].
+	i := imagePath size.
+	[ i > 0 and: [ (imagePath at: i) ~= delimiter ] ]
+		whileTrue: [ i := i - 1 ].
+	i = 0
+		ifTrue: [ ^ '' ].
+	^ imagePath copyFrom: i to: imagePath size
+]
+
+{ #category : #'as yet unclassified' }
+PCFile class >> primImageName [
+	"Answer the full path name for the current image."
+	<primitive: 121>
+	self primitiveFailed
+]
 
 { #category : #'as yet unclassified' }
 PCFile >> close [
@@ -128,15 +153,6 @@ PCFile >> primImageName [
 	^ self class primImageName
 ]
 
-
-{ #category : #'as yet unclassified' }
-PCFile class >> primImageName [
-	"Answer the full path name for the current image."
-	<primitive: 121>
-	self primitiveFailed
-]
-
-
 { #category : #'as yet unclassified' }
 PCFile >> primOpen: fileName writable: writableFlag [
 	"Open a file of the given name, and return the file ID obtained.
@@ -199,21 +215,4 @@ PCFile >> size [
 	"Answer the size of this file in bytes."
 
 	^ self primSize: fileID
-]
-
-{ #category : #'as yet unclassified' }
-PCFile class >> imageName [
-	"Answer the name of the image file"
-
-	| imagePath delimiter i |
-	imagePath := self primImageName.
-	delimiter := $/.
-	(imagePath includes: delimiter)
-		ifFalse: [ delimiter := $\ ].
-	i := imagePath size.
-	[ i > 0 and: [ (imagePath at: i) ~= delimiter ] ]
-		whileTrue: [ i := i - 1 ].
-	i = 0
-		ifTrue: [ ^ '' ].
-	^ imagePath copyFrom: i to: imagePath size
 ]

@@ -1,10 +1,12 @@
 Class {
 	#name : #PCAssociation,
 	#superclass : #PCMagnitude,
+	#role : 'Association',
 	#instVars : [
 		'key',
 		'value'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Collections-Unordered'
 }
 

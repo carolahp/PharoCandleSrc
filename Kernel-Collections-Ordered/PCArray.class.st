@@ -1,7 +1,9 @@
 Class {
 	#name : #PCArray,
 	#superclass : #PCArrayedCollection,
+	#role : 'Array',
 	#type : #variable,
+	#classVars : [ ],
 	#category : #'Kernel-Collections-Ordered'
 }
 

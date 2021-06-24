@@ -1,6 +1,7 @@
 Class {
 	#name : #PCMethodContext,
 	#superclass : #PCContext,
+	#role : 'Context',
 	#type : #variable,
 	#instVars : [
 		'stackp',
@@ -8,6 +9,7 @@ Class {
 		'closureOrNil',
 		'receiver'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Methods'
 }
 
@@ -33,6 +35,16 @@ PCMethodContext >> home [
 { #category : #'as yet unclassified' }
 PCMethodContext >> method [
 	^ method
+]
+
+{ #category : #'as yet unclassified' }
+PCMethodContext >> printOn: aStream [
+	aStream
+		nextPutAll:  '*', receiver asString, '* ';
+		nextPutAll: receiver class asString;
+		nextPutAll: '(', self method methodClass asString, ')';
+		nextPutAll: ' >>> ';
+		nextPutAll: self method selector asString
 ]
 
 { #category : #'as yet unclassified' }
@@ -105,14 +117,4 @@ PCMethodContext >> tempAt: index put: value [
 	<primitive: 211>
 	^self at: index put: value
 	
-]
-
-{ #category : #'as yet unclassified' }
-PCMethodContext >> printOn: aStream [
-	aStream
-		nextPutAll:  '*', receiver asString, '* ';
-		nextPutAll: receiver class asString;
-		nextPutAll: '(', self method methodClass asString, ')';
-		nextPutAll: ' >>> ';
-		nextPutAll: self method selector asString
 ]

@@ -6,6 +6,7 @@ Class {
 		'methodDict',
 		'format'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Classes'
 }
 

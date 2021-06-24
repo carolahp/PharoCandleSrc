@@ -1,9 +1,11 @@
 Class {
 	#name : #PCSemaphore,
 	#superclass : #PCLinkedList,
+	#role : 'Semaphore',
 	#instVars : [
 		'excessSignals'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Optional'
 }
 

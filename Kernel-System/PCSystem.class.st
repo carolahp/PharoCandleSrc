@@ -2,7 +2,7 @@ Class {
 	#name : #PCSystem,
 	#superclass : #PCObject,
 	#classVars : [
-		'SpecialObjectsArray'
+		#SpecialObjectsArray
 	],
 	#category : #'Kernel-System'
 }
@@ -29,6 +29,18 @@ PCSystem class >> append: aString toFile: fileName [
 	f nextPutAll: aString.
 	f cr.
 	f close
+]
+
+{ #category : #'as yet unclassified' }
+PCSystem class >> benchInstantiate [
+	| n t1 t2 |
+	n := 1000000.
+	t1 := [ n benchInstantiate: PCArray ] msecs.
+	t2 := [ n benchInstantiate: PCPoint] msecs.
+	^	n printString, ' instances createdd.' 
+		, PCCharacter cr asString
+		, t1 printString , ' sec (', PCArray name ,'); '
+		, t2 printString , ' sec (', PCPoint name ,')'
 ]
 
 { #category : #'as yet unclassified' }

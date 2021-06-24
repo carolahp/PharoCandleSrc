@@ -6,6 +6,7 @@ Class {
 		'position',
 		'readLimit'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Streams'
 }
 

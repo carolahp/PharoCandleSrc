@@ -5,6 +5,7 @@ Class {
 		'nextLink',
 		'value'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Collections-Ordered'
 }
 

@@ -1,6 +1,7 @@
 Class {
 	#name : #PCInteger,
 	#superclass : #PCNumber,
+	#classVars : [ ],
 	#category : #'Kernel-Numeric'
 }
 
@@ -190,6 +191,13 @@ PCInteger >> benchFib [
 	^ self < 2
 		ifTrue: [ 1 ]
 		ifFalse: [ (self - 1) benchFib + (self - 2) benchFib + 1 ]
+]
+
+{ #category : #'as yet unclassified' }
+PCInteger >> benchInstantiate: aClass [
+	1 to: self do: [ :iter | 
+		aClass new
+	]
 ]
 
 { #category : #'as yet unclassified' }

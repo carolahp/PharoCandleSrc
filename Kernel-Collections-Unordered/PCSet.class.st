@@ -5,6 +5,7 @@ Class {
 		'tally',
 		'array'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Collections-Unordered'
 }
 

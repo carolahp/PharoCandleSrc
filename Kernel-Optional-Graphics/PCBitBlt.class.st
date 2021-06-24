@@ -18,6 +18,7 @@ Class {
 		'clipHeight',
 		'colorMap'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Optional-Graphics'
 }
 

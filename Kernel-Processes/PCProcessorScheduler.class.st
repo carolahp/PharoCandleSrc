@@ -1,10 +1,12 @@
 Class {
 	#name : #PCProcessorScheduler,
 	#superclass : #PCObject,
+	#role : 'ProcessorScheduler',
 	#instVars : [
 		'suspendedProcessLists',
 		'activeProcess'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Processes'
 }
 

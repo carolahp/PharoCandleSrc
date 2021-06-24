@@ -5,6 +5,7 @@ Class {
 		'firstLink',
 		'lastLink'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Collections-Ordered'
 }
 

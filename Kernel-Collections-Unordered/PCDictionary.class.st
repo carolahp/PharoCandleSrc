@@ -1,6 +1,8 @@
 Class {
 	#name : #PCDictionary,
 	#superclass : #PCSet,
+	#role : 'Dictionary',
+	#classVars : [ ],
 	#category : #'Kernel-Collections-Unordered'
 }
 
