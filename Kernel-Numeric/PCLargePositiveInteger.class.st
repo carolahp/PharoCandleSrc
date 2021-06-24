@@ -1,7 +1,9 @@
 Class {
 	#name : #PCLargePositiveInteger,
 	#superclass : #PCInteger,
+	#role : 'LargePositiveInteger',
 	#type : #bytes,
+	#classVars : [ ],
 	#category : #'Kernel-Numeric'
 }
 

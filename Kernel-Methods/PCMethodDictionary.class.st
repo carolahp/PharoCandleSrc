@@ -1,7 +1,9 @@
 Class {
 	#name : #PCMethodDictionary,
 	#superclass : #PCDictionary,
+	#role : 'MethodDictionary',
 	#type : #variable,
+	#classVars : [ ],
 	#category : #'Kernel-Methods'
 }
 

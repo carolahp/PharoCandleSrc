@@ -1,10 +1,12 @@
 Class {
 	#name : #PCProcessList,
 	#superclass : #PCSequenceableCollection,
+	#role : 'ProcessList',
 	#instVars : [
 		'firstLink',
 		'lastLink'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Processes'
 }
 

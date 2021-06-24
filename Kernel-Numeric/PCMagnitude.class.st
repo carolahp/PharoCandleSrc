@@ -1,6 +1,7 @@
 Class {
 	#name : #PCMagnitude,
 	#superclass : #PCObject,
+	#classVars : [ ],
 	#category : #'Kernel-Numeric'
 }
 

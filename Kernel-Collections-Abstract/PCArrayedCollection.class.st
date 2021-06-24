@@ -1,6 +1,7 @@
 Class {
 	#name : #PCArrayedCollection,
 	#superclass : #PCSequenceableCollection,
+	#classVars : [ ],
 	#category : #'Kernel-Collections-Abstract'
 }
 

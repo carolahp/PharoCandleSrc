@@ -1,6 +1,7 @@
 Class {
 	#name : #PCIdentitySet,
 	#superclass : #PCSet,
+	#classVars : [ ],
 	#category : #'Kernel-Optional'
 }
 

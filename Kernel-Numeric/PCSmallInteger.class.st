@@ -1,7 +1,9 @@
 Class {
 	#name : #PCSmallInteger,
 	#superclass : #PCInteger,
+	#role : 'SmallInteger',
 	#type : #immediate,
+	#classVars : [ ],
 	#category : #'Kernel-Numeric'
 }
 

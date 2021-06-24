@@ -1,6 +1,8 @@
 Class {
 	#name : #PCObject,
 	#superclass : #nil,
+	#role : 'ProtoObject',
+	#classVars : [ ],
 	#category : #'Kernel-Objects'
 }
 

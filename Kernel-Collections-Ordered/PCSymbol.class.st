@@ -1,8 +1,9 @@
 Class {
 	#name : #PCSymbol,
 	#superclass : #PCString,
-	#role: #ByteSymbol,
+	#role : 'ByteSymbol',
 	#type : #bytes,
+	#classVars : [ ],
 	#category : #'Kernel-Collections-Ordered'
 }
 
@@ -76,6 +77,11 @@ PCSymbol >> initFrom: aString [
 ]
 
 { #category : #'as yet unclassified' }
+PCSymbol >> isSymbol [
+	^ true
+]
+
+{ #category : #'as yet unclassified' }
 PCSymbol >> printOn: aStream [
 	aStream nextPutAll: self
 ]
@@ -88,9 +94,4 @@ PCSymbol >> replaceFrom: start to: stop with: replacement startingAt: repStart [
 { #category : #'as yet unclassified' }
 PCSymbol >> species [
 	^ PCString
-]
-
-{ #category : #'as yet unclassified' }
-PCSymbol >> isSymbol [
-	^ true
 ]

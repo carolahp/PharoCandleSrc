@@ -6,6 +6,7 @@ Class {
 		'instVarsNames',
 		'classVars'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Classes'
 }
 

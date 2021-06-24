@@ -1,6 +1,7 @@
 Class {
 	#name : #PCProcess,
 	#superclass : #PCObject,
+	#role : 'Process',
 	#instVars : [
 		'nextLink',
 		'suspendedContext',
@@ -9,6 +10,7 @@ Class {
 		'threadId',
 		'errorHandler'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Processes'
 }
 

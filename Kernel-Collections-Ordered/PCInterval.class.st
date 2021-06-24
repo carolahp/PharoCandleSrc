@@ -6,6 +6,7 @@ Class {
 		'stop',
 		'step'
 	],
+	#classVars : [ ],
 	#category : #'Kernel-Collections-Ordered'
 }
 
