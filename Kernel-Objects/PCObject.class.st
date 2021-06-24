@@ -14,16 +14,6 @@ PCObject class >> cannotInstantiate [
 ]
 
 { #category : #'as yet unclassified' }
-PCObject class >> new [
-	"Create a new instance of me and initialize it."
-
-	^ self basicNew
-		owner: thisContext sender receiver;
-		initialize;
-		yourself
-]
-
-{ #category : #'as yet unclassified' }
 PCObject >> -> anObject [
 	"Answer an Association with myself as its key and anObject as its value."
 

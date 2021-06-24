@@ -52,11 +52,15 @@ PCBehavior >> allInstancesDo: aBlock [
 { #category : #'as yet unclassified' }
 PCBehavior >> basicNew [
 	^ self privateNew
+		owner: thisContext sender receiver;
+		yourself
 ]
 
 { #category : #'as yet unclassified' }
 PCBehavior >> basicNew: desiredSize [
-	^ self privateNew: desiredSize
+	^ (self privateNew: desiredSize)
+		owner: thisContext sender receiver;
+		yourself
 ]
 
 { #category : #'as yet unclassified' }
