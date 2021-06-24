@@ -236,7 +236,7 @@ PCSystem class >> tinyBenchmarks [
 { #category : #'as yet unclassified' }
 PCSystem class >> benchInstantiate [
 	| n t1 t2 |
-	n := 100000.
+	n := 1000000.
 	t1 := [ n benchInstantiate: PCArray ] msecs.
 	t2 := [ n benchInstantiate: PCPoint] msecs.
 	^ (n // t1) printString , ' instances/sec (', PCArray name ,'); '
