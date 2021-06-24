@@ -68,9 +68,3 @@ PCArray >> replaceFrom: start to: stop with: replacement startingAt: repStart [
 		with: replacement
 		startingAt: repStart
 ]
-
-PCArray class >> new: size [
-	^ (super new: size)
-		owner: thisContext sender receiver;
-		yourself
-]

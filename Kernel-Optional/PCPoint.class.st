@@ -11,25 +11,6 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PCPoint class >> new [
- 	"PCSystem log: 'from PCPoint new'. 
-	PCSystem log: '   thisContext hola : ',thisContext hola.
-	PCSystem log: '   thisContext sender : ',thisContext sender asString.
-	PCSystem log: '   thisContext sender class : ',thisContext sender class asString.
-	PCSystem log: '   thisContext closureOrNil : ',thisContext closureOrNil asString.
-	PCSystem log: '   thisContext closureOrNil class : ',thisContext closureOrNil class asString.
-	PCSystem log: '   thisContext receiver : ',thisContext receiver asString.
-	PCSystem log: '   thisContext receiver class : ',thisContext receiver class asString.
-	PCSystem log: '   thisContext method : ',thisContext method asString.
-	PCSystem log: '   thisContext method class : ',thisContext method class asString.
-	"
-	
-	^ super new 
-		owner: thisContext sender receiver; 
-		yourself 
-]
-
-{ #category : #'as yet unclassified' }
 PCPoint class >> r: rho degrees: theta [
 	"Answer an instance of me with polar coordinates rho and theta."
 
