@@ -37,8 +37,10 @@ PCSystem class >> benchInstantiate [
 	n := 1000000.
 	t1 := [ n benchInstantiate: PCArray ] msecs.
 	t2 := [ n benchInstantiate: PCPoint] msecs.
-	^ (n // t1) printString , ' instances/sec (', PCArray name ,'); '
-	  , (n // t2) printString , ' instances/sec (', PCPoint name ,')'
+	^	n printString, ' instances createdd.' 
+		, PCCharacter cr asString
+		, t1 printString , ' sec (', PCArray name ,'); '
+		, t2 printString , ' sec (', PCPoint name ,')'
 ]
 
 { #category : #'as yet unclassified' }
