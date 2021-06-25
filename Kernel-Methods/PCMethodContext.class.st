@@ -19,6 +19,13 @@ PCMethodContext >> asContext [
 ]
 
 { #category : #'as yet unclassified' }
+PCMethodContext >> callStack [
+	^ self sender isNil 
+		ifTrue:  [{ self } asOrderedCollection]
+		ifFalse: [{ self } asOrderedCollection addAll: self sender callStack; yourself ]
+]
+
+{ #category : #'as yet unclassified' }
 PCMethodContext >> closureOrNil [
 	^ closureOrNil
 ]
@@ -103,6 +110,18 @@ PCMethodContext >> stackp: newStackp [
 
 	<primitive: 76>
 	self error: 'stackp store failure'
+]
+
+{ #category : #'as yet unclassified' }
+PCMethodContext >> stringCallStack [
+
+	| stream |
+	stream := PCWriteStream on: (PCString new: 100).
+	self callStack do: [:contx | 
+		stream 
+			nextPutAll: contx asString;
+			nextPutAll: PCCharacter cr asString ].
+	^ stream contents
 ]
 
 { #category : #'as yet unclassified' }

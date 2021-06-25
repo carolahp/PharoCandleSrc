@@ -23,6 +23,17 @@ PCOrderedCollection class >> new: anInteger [
 ]
 
 { #category : #'as yet unclassified' }
+PCOrderedCollection class >> newFrom: aCollection [
+
+	"Answer an instance of me containing the same elements as aCollection."
+
+	| newCollection |
+	newCollection := self new: aCollection size.
+	newCollection addAll: aCollection.
+	^newCollection
+]
+
+{ #category : #'as yet unclassified' }
 PCOrderedCollection >> add: newObject [
 	"Append newObject to me. Equivalent to addLast:. Answer newObject."
 
@@ -34,6 +45,15 @@ PCOrderedCollection >> add: newObject [
 ]
 
 { #category : #'as yet unclassified' }
+PCOrderedCollection >> addAll: aCollection [ 
+	"Add each element of aCollection at the end of the receiver. 
+	Answer aCollection."
+
+	aCollection do: [:each | self addLast: each].
+	^aCollection
+]
+
+{ #category : #'as yet unclassified' }
 PCOrderedCollection >> addFirst: newObject [
 	"Add newObject to the beginning of the receiver. Answer newObject."
 
@@ -41,6 +61,16 @@ PCOrderedCollection >> addFirst: newObject [
 		ifTrue: [ self makeRoomAtFirst ].
 	firstIndex := firstIndex - 1.
 	array at: firstIndex put: newObject.
+	^ newObject
+]
+
+{ #category : #'as yet unclassified' }
+PCOrderedCollection >> addLast: newObject [ 
+	"Add newObject to the end of the receiver. Answer newObject."
+
+	lastIndex = array size ifTrue: [self makeRoomAtLast].
+	lastIndex := lastIndex + 1.
+	array at: lastIndex put: newObject.
 	^ newObject
 ]
 
