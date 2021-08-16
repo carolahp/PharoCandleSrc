@@ -34,15 +34,25 @@ PCSystem class >> append: aString toFile: fileName [
 { #category : #'as yet unclassified' }
 PCSystem class >> benchInstantiate [
 	| n t1 t2 |
-	n := 1000000.
-	t1 := [ n benchInstantiate: PCArray ] msecs.
+	n := 100000.
+	t1 := [ n benchInstantiate: PCArray] msecs.
 	t2 := [ n benchInstantiate: PCPoint] msecs.
-	^	n printString, ' instances createdd.' 
+	^ n printString, ' instances created.' 
 		, PCCharacter cr asString
-		, t1 printString , ' sec (', PCArray name ,'); '
-		, t2 printString , ' sec (', PCPoint name ,')'
+		, t1 printString , ' microsecs (', PCArray name ,'); '
+		, t2 printString , ' microsecs (', PCPoint name ,')'
 ]
 
+
+PCSystem class >> primUTCMicrosecondsClock [
+	"Answer the number of micro-seconds ellapsed since Squeak epoch.
+	That is since 00:00 on the morning of January 1, 1901 UTC.
+	At least a 60-bit unsigned integer is used internally which is enough for dates up to year 38435.
+	Essential. See Object documentation whatIsAPrimitive. "
+
+	<primitive: 240>
+	self primitiveFailed
+]
 { #category : #'as yet unclassified' }
 PCSystem class >> exitToDebugger [
 	"Tell the VM that we've encountered an unhandled error or halt."

@@ -76,12 +76,12 @@ PCBlock >> method [
 
 { #category : #'as yet unclassified' }
 PCBlock >> msecs [
-	"Answer the number of milliseconds it took to evaluate this block."
+	"Answer the number of microseconds it took to evaluate this block."
 
 	| startMSecs |
-	startMSecs := PCSystem milliseconds.
+	startMSecs := PCSystem primUTCMicrosecondsClock.
 	self value.
-	^ PCSystem milliseconds - startMSecs
+	^ PCSystem primUTCMicrosecondsClock - startMSecs
 ]
 
 { #category : #'as yet unclassified' }
