@@ -23,9 +23,8 @@ PCUndefinedObject >> basicCopy [
 { #category : #'as yet unclassified' }
 PCUndefinedObject >> entryPoint [
 
-PCSystem log: 'Candle'.
-PCSystem log: PCSystem benchInstantiate.
-PCSystem quit.
+	PCSystem log: 'Hello world from Candle'.
+	PCSystem quit.
 ]
 
 { #category : #'as yet unclassified' }
